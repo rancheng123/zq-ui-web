@@ -1,5 +1,8 @@
-import EaInput from "./index.jsx";
-EaInput.install = function (Vue) {
-  Vue.component(EaInput.name, EaInput);
+import ZqInput from './src/input.vue';
+
+/* istanbul ignore next */
+ZqInput.install = function (Vue) {
+  Vue.component(ZqInput.name, ZqInput);
 };
-export default EaInput;
+
+export default ZqInput;

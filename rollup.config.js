@@ -18,7 +18,7 @@ var out = "lib/ea/index.js";
 
 // 测试 start
 //var target = 'checkbox2/index.vue'
-//var out = 'lib/input/index.js';
+//var out = 'lib/input2/index.js';
 // 测试 end
 
 import path from "path";
