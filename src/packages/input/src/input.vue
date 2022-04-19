@@ -1,6 +1,6 @@
 <template>
-  <div style="border:1px solid green">
-    this is zq-input version45678
+  <div class="inputWrap">
+    this is zq-input version456789
     <el-input :style="{ width: width }" v-bind="$attrs" class="zq-input" v-on="$listeners">
       <slot />
     </el-input>
