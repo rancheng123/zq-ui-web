@@ -1,0 +1,78 @@
+@import "var.less";
+.el-input input {
+  border-radius: 4px;
+  caret-color: @themeColor!important;
+  // padding: 10px 30px !important;
+}
+.el-input__inner:focus {
+  border-color: #aab1b9;
+}
+
+.el-textarea textarea {
+  caret-color: @themeColor!important;
+}
+.el-input__count {
+  line-height: 12px;
+}
+.el-textarea textarea {
+  color: @color-text;
+}
+
+.el-textarea :focus {
+  outline: 0 !important;
+  border-color: #aab1b9;
+}
+.el-textarea__inner {
+  //el_input中的隐藏属性
+  resize: none; //主要是这个样式
+  padding: 8px 16px;
+}
+.el-input__inner {
+  // padding-right: 50px;
+  color: @color-text;
+  border: 1px solid #dbe0e6;
+}
+.el-input .el-input__count .el-input__count-inner {
+  color: @color-icon-normal;
+  padding: 0 13px 0 8px;
+}
+.el-input .el-input__count {
+  height: 38px;
+}
+.el-textarea .el-input__count {
+  color: @color-icon-normal;
+  position: absolute;
+  font-size: 12px;
+  bottom: 8px;
+  right: 16px;
+}
+.el-input__inner::-webkit-input-placeholder {
+  color: @color-dropdown-disable !important;
+}
+.el-input__inner::-moz-input-placeholder {
+  color: @color-dropdown-disable !important;
+}
+.el-input__inner::-ms-input-placeholder {
+  color: @color-dropdown-disable !important;
+}
+
+.zq-input {
+  .el-input__prefix {
+    left: 10px !important;
+  }
+  .el-input__suffix {
+    right: 10px !important;
+  }
+}
+.zq-input.el-input--prefix.el-input--suffix {
+  .el-input__inner {
+    padding-right: 36px !important;
+    padding-left: 36px !important;
+  }
+}
+.zq-input.el-input--suffix {
+  .el-input__inner {
+    padding-right: 36px !important;
+    padding-left: 16px !important;
+  }
+}

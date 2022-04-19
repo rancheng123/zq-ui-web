@@ -2,7 +2,7 @@
 import vue from "rollup-plugin-vue2";
 
 import scss from "rollup-plugin-scss";
-
+import less from 'rollup-plugin-less';
 import babel from "rollup-plugin-babel";
 import json from "rollup-plugin-json";
 
@@ -47,7 +47,10 @@ module.exports = {
       ],
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
     }),
-    scss(),
+    //scss(),
+    less({
+      output: './lib/index.css'
+    }),
     vue(),
 
     json({

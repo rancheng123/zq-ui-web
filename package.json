@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "style": "lib/index.css",
   "scripts": {
-    "dev": "nodemon --watch src -e js,jsx,scss,vue,tsx -x \"npm run build\"",
+    "dev": "nodemon --watch src -e js,jsx,scss,less,vue,tsx -x \"npm run build\"",
     "build": "rollup --config ./rollup.config.js",
     "dev2": "concurrently \"npm run serve\" \"npm run build2\" ",
     "build2": "rollup --watch --config ./rollup.config.js",
