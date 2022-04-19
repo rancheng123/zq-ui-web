@@ -14,7 +14,7 @@ import svg from "rollup-plugin-svg";
 import sourcemaps from "rollup-plugin-sourcemaps";
 
 var target = "index.js";
-var out = "lib/ea/index.js";
+var out = "lib/index.js";
 
 // 测试 start
 //var target = 'checkbox2/index.vue'
