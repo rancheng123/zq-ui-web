@@ -1,0 +1,67 @@
+@import './var.less';
+.zq-button {
+  min-width: 88px;
+  height: 40px;
+  padding: 12px 16px !important;
+}
+.el-button--default,
+.el-button--default.is-plain {
+  color: @color-text;
+  border: 1px solid @default-button-border;
+  font-weight: 400;
+  &:hover{
+    background: @default-button-background-hover;
+    border: 1px solid @default-button-border;
+    color: @color-text;
+  }
+  &:active{
+    color: @color-text;
+    border: 1px solid @default-button-border;
+    background: @default-button-background-active;
+  }
+  &:focus{
+    color: @color-text;
+    border: 1px solid @default-button-border;
+    // background: @default-button-background-active;
+  }
+}
+.el-button--primary {
+  color: @white;
+  border: 0 none;
+  &:hover{
+    background: @primary-button-background-hover;
+  }
+  &:focus{
+    background:  @themeColor !important;
+  }
+  &:active{
+    background: @primary-button-background-active;
+  }
+}
+.el-button--primary.is-plain {
+  color: @themeColor;
+  border: 1px solid @themeColor;
+  font-weight: 400;
+  background: @white;
+  &:hover{
+    color: @themeColor;
+    background: @primary-plain-button-background-hover;
+  }
+  &:active{
+    color: @themeColor;
+    background: @primary-plain-button-background-active;
+  }
+  &:focus{
+    color: @themeColor;
+    // background: @primary-plain-button-background-active;
+    background: @white !important;
+  }
+}
+.el-button-group {
+  .zq-button.el-button--primary {
+    color: @white;
+  }
+  .zq-button {
+    color: @color-text;
+  }
+}

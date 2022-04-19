@@ -21,6 +21,10 @@ function compile() {
     .pipe(dest(`./lib/theme-chalk`));
 }
 
+function copyfont() {
+    return src('./packages/theme-chalk/src/fonts/**')
+        .pipe(cssmin())
+        .pipe(dest('./lib/theme-chalk/fonts'));
+}
 
-
-exports.build = series(compile);
+exports.build = series(compile, copyfont);
