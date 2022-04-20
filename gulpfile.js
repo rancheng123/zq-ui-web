@@ -22,9 +22,15 @@ function compile() {
 }
 
 function copyfont() {
-    return src('./packages/theme-chalk/src/fonts/**')
+    return src(config.packagePath + 'theme-chalk/src/fonts/**')
         .pipe(cssmin())
-        .pipe(dest('./lib/theme-chalk/fonts'));
+        .pipe(dest('./lib/fonts'));
 }
 
-exports.build = series(compile, copyfont);
+function copyelement() {
+    return src(config.packagePath + 'theme-chalk/src/element-ui/**/*').pipe(
+        dest(`./lib/element-ui`)
+    );
+}
+
+exports.build = series(compile, copyfont,copyelement);

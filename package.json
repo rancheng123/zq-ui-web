@@ -6,16 +6,10 @@
   "main": "lib/index.js",
   "style": "lib/index.css",
   "scripts": {
-    "dev": "nodemon --watch src -e js,jsx,scss,less,vue,tsx -x \"npm run build\"",
-    "build": "rollup --config ./rollup.config.js",
-    "dev2": "concurrently \"npm run serve\" \"npm run build2\" ",
-    "build2": "rollup --watch --config ./rollup.config.js",
-    "serve": "vue-cli-service serve",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint",
-    "build:style": "gulp build --gulpfile gulpfile.js",
-    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk"
+    "dev": "nodemon --watch src -e js,jsx,scss,less,vue,tsx -x \"npm run buildCore\"",
+    "build": "npm run buildCore && npm run copy:style",
+    "buildCore": "rollup --config ./rollup.config.js",
+    "copy:style": "gulp build --gulpfile gulpfile.js"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
