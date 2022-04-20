@@ -1,6 +1,6 @@
 {
   "name": "zq-ui-web-new",
-  "version":"0.0.3",
+  "version":"0.0.13",
   "description": "a lib for Zq",
   "private": false,
   "main": "lib/index.js",
