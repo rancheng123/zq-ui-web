@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <EaInput
+    <ZqInput
       :value="value"
       @input="
       (val)=>{
@@ -12,34 +12,18 @@
       placeholder="nihao"
       width="100"
       clearable
-    ></EaInput>
-
-    <EaInput2
-      :value="value2"
-      @input="
-      (val)=>{
-
-        value2 = val;
-      }
-      "
-
-      placeholder="nihao"
-      width="100"
-      clearable
-    ></EaInput2>
+    ></ZqInput>
   </div>
 </template>
 
 <script>
 
 
-// 单独引入
-//import '../../lib/button/index.css';
-//import EaInput from '../../lib/button/index.js';
 
-// 联合引入
-import '../../lib/ea/index.css';
-import { EaInput, EaInput2 } from '../../lib/ea/index.js';
+import '../../lib/element-ui/theme/index.css'
+import '../../lib/fonts/iconfont.css'
+import '../../lib/index.css'
+import { ZqInput, ZqIcon, ZqButton} from '../../lib/index.js';
 
 
 export default {
@@ -51,8 +35,7 @@ export default {
     }
   },
   components: {
-    EaInput,
-    EaInput2
+    ZqInput,
   },
 };
 </script>
