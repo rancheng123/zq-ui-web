@@ -1,10 +1,12 @@
 <template>
-  <popup :type="'formPage'"></popup>
+  <div style="background: yellow">
+    <popup :type="'formPage'"></popup>
+  </div>
 </template>
 <script>
 import popup from "./popup.vue";
 export default {
-  name: "formPage",
+  name: "ZqFormPage",
   components: {
     popup,
   },

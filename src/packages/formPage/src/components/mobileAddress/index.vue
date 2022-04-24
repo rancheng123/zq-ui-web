@@ -128,8 +128,8 @@
 </template>
 <script>
 import addressJson from "../../data/address.json";
-import componentStore from "../../utils/componentStore";
-import { IsIphonex } from "../../utils";
+import componentStore from "../../utils/componentStore.js";
+import { IsIphonex } from "../../utils/index.js";
 export default {
   name: "mobileAdress",
   data() {

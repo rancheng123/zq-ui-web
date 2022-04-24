@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import { copeIphoneXHomeIndicator } from "../../utils";
+import { copeIphoneXHomeIndicator } from "../../utils/index.js";
 import flexBox from "../flexBox/index.vue";
 export default {
   name: "mobileSelect",

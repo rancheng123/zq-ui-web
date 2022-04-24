@@ -57,7 +57,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
-import { searchEnterprise } from "../../api/index.js"; // 创建表单需要填写的字段
+import { searchEnterprise } from "../api/index.js"; // 创建表单需要填写的字段
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { zqFormItem },
