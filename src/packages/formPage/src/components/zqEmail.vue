@@ -1,0 +1,218 @@
+<!-- DJH time: -->
+<template>
+  <div class="flex-auto">
+    <zq-form-item v-bind="$attrs">
+      <template>
+        <zq-input
+          :style="$attrs.formData.advance_attribute.input.style"
+          v-model.trim="value[$attrs.currentItem.field_name]"
+          :placeholder="$attrs.currentItem.placeholder"
+          class="input-with-select"
+          @blur="emailChange"
+        >
+        </zq-input>
+      </template>
+    </zq-form-item>
+    <zq-form-item
+      v-bind="$attrs"
+      :isHiddenLabel="true"
+      :prop="$attrs.currentItem.field_name + 'code'"
+      v-if="$attrs.currentItem.isVerificationCode == 2"
+    >
+      <template>
+        <div class="code-row">
+          <zq-input
+            :style="$attrs.formData.advance_attribute.input.style"
+            @input="codeInputBlur"
+            v-model.trim="value[$attrs.currentItem.field_name + 'code']"
+          ></zq-input>
+          <zq-button
+            class="code-btn"
+            @click="sendCode"
+            :disabled="!value[$attrs.currentItem.field_name] || btnDisabled"
+          >
+            {{ codeBtnText }}
+          </zq-button>
+        </div>
+      </template>
+    </zq-form-item>
+  </div>
+</template>
+
+<script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+import zqFormItem from "./zqFormItem.vue";
+import { mixin } from "../utils/mixin.js";
+export default {
+  //import引入的组件需要注入到对象中才能使用
+  name: "zqEmail",
+  components: { zqFormItem },
+  inheritAttrs: false,
+  mixins: [mixin],
+  props: {
+    value: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
+  data() {
+    //这里存放数据
+    return {
+      code: "",
+      codeBtnText: "获取",
+      btnDisabled: false,
+      checkedStatus: "",
+      checkedPhone: "",
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {},
+  //监控data中的数据变化
+  watch: {
+    code(val) {
+      if (val.length >= 4) {
+        this.codeInputBlur();
+      }
+    },
+    value: {
+      handler() {
+        // 设置过默认值也需要触发或者为空
+        let fileRules = this.$attrs.currentItem.fileRules;
+        if (fileRules && fileRules.length > 0) {
+          this.$nextTick(() => {
+            this.checkedFlieKey();
+          });
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+    // value: {
+    //   handler() {
+    //     console.log(this.$attrs.currentItem.display_name);
+    //     let fileRules = this.$attrs.currentItem.fileRules;
+    //     if (fileRules.length > 0) {
+    //       this.isSuccess();
+    //       this.isError();
+    //     }
+    //   },
+    //   deep: true,
+    // },
+    // checkedStatus: {
+    //   handler(val) {
+    //     if (val == 1) {
+    //       this.isSuccess();
+    //     } else if (val == 2) {
+    //       this.isError();
+    //     }
+    //   },
+    // },
+  },
+  mounted() {},
+  //方法集合
+  methods: {
+    sendCode() {
+      let self = this;
+      const params = {
+        value: this.value[this.$attrs.currentItem.field_name],
+      };
+      this.$Api.form.getEmailCode(params).then(({ code, msg }) => {
+        if (code == 0) {
+          let timesRun = 90;
+          this.btnDisabled = true;
+          this.phoneCode = this.value;
+          let interval = setInterval(function () {
+            timesRun--;
+            self.codeBtnText = `${timesRun}s`;
+            if (timesRun === 0) {
+              self.btnDisabled = false;
+              self.codeBtnText = "重新获取";
+              clearInterval(interval);
+            }
+          }, 1000);
+        } else {
+          this.$zqMessage.error(msg);
+        }
+      });
+    },
+    emailChange(val) {
+      if (this.checkedStatus && val == this.checkedPhone) {
+        this.$set(
+          this.value,
+          `${this.$attrs.currentItem.field_name}_checked`,
+          1
+        );
+        this.checkedFlieKey();
+        this.checkedStatus = 1;
+      } else if (this.checkedStatus && val != this.checkedPhone) {
+        this.$set(
+          this.value,
+          `${this.$attrs.currentItem.field_name}_checked`,
+          2
+        );
+        this.checkedFlieKey();
+        this.checkedStatus = 2;
+      }
+    },
+    codeInputBlur(val) {
+      if (val && val.length !== 4) {
+        this.checkedStatus = 2;
+        this.$set(
+          this.value,
+          `${this.$attrs.currentItem.field_name}_checked`,
+          2
+        );
+        this.checkedFlieKey();
+        return;
+      }
+      const params = {
+        value: this.value[this.$attrs.currentItem.field_name],
+        code: this.value[this.$attrs.currentItem.field_name + "code"],
+      };
+      this.$Api.form.checkEmailCode(params).then(({ code, msg }) => {
+        if (code == 0) {
+          this.$emit("checked", this.$attrs.currentItem.field_name);
+          this.$set(
+            this.value,
+            `${this.$attrs.currentItem.field_name}_checked`,
+            1
+          );
+          this.checkedFlieKey();
+          this.checkedStatus = 1;
+          this.checkedPhone = this.value[this.$attrs.currentItem.field_name];
+          this.$zqMessage.success(msg);
+        } else {
+          // this.isError();
+          this.$set(
+            this.value,
+            `${this.$attrs.currentItem.field_name}_checked`,
+            2
+          );
+          this.checkedFlieKey();
+          this.checkedStatus = 2;
+        }
+      });
+    },
+  },
+};
+</script>
+<style lang="less" scoped>
+//@import url(); 引入公共css类
+.code-row {
+  display: flex;
+  justify-content: space-between;
+  .el-input {
+    flex: 1;
+    .el-input__inner {
+      height: 40px !important;
+      line-height: 40px !important;
+    }
+  }
+  .code-btn {
+    margin-left: 16px;
+  }
+}
+</style>

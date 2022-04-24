@@ -1,14 +1,12 @@
 <template>
-  <div class="ZqFormPageWrap">
-    this is zq-input ZqFormPageWrap
-
-  </div>
-
-
+  <popup :type="'formPage'"></popup>
 </template>
 <script>
+import popup from "./popup.vue";
 export default {
-  name: 'ZqFormPage',
-  inheritAttrs: false,
-}
+  name: "formPage",
+  components: {
+    popup,
+  },
+};
 </script>
