@@ -57,14 +57,17 @@
                     :hide-required-asterisk="true"
                     class="custom-form"
                   >
-                    <preview-item
+                    <!--    暂时关闭  start                -->
+                    preview-item
+                    <!--                    <preview-item
                       v-for="item in formData.field_content"
                       class="draggable-item"
                       :currentItem="item"
                       :formData="formData"
                       v-model="submitData"
                       :key="item.field_name"
-                    />
+                    />-->
+                    <!--    暂时关闭  end                -->
                   </el-form>
                 </el-row>
                 <!-- 隐私条款 -->
@@ -133,10 +136,14 @@
 </template>
 <script>
 // 表单组件
-import previewItem from "./components/previewItem.vue";
+
+// 暂时关闭  start
+//import previewItem from "./components/previewItem.vue";
+// 暂时关闭  end
 import Collect from "./utils/collect.js";
 import { getUtmJson } from "./utils/parseUrl.js";
 import componentStore from "./utils/componentStore.js";
+import { isMobile } from "./utils/index.js";
 
 export default {
   data() {
@@ -181,7 +188,11 @@ export default {
       }
     },
   },
-  components: { previewItem },
+  components: {
+    // 暂时关闭  start
+    //previewItem
+    // 暂时关闭  end
+  },
   mounted() {
     this.cta_background = this.$route.query.ctaBackground || "";
     this.unique_id = this.$route.query.unique_id || "";
@@ -202,7 +213,7 @@ export default {
       document.getElementById("app").setAttribute("class", "fullscreen");
     });
     this.uo = window.localStorage.getItem("uo") || "";
-    this.is_mobi = this.isMobile();
+    this.is_mobi = isMobile();
     if (this.is_mobi) {
       let head = document.getElementsByTagName("head");
       let meta = document.createElement("meta");
@@ -232,16 +243,7 @@ export default {
     sendMessage() {
       window.parent.postMessage({ type: "cdp" }, "*");
     },
-    isMobile() {
-      let flag = navigator.userAgent.match(
-        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-      );
-      //测试 start
-      //return true;
-      //测试 end
-
-      return flag;
-    },
+    isMobile,
     checked(key, value) {
       if (this.formData.is_auto_completion == 2) {
         this.getHistoryData(key, value, this.org_id);
@@ -510,7 +512,7 @@ export default {
                   this.fnPageJump();
                 } else {
                   // false 说明被iframe嵌套的 如 在cta中预览嵌套表单
-                  if (this.$common.isMobile()) {
+                  if (isMobile()) {
                     // 因safari的安全机制将“异步”window.open阻挡了所以采用localtion
                     // 被两级iframe嵌套了
                     window.parent.parent.location.href =

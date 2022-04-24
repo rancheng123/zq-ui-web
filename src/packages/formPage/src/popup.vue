@@ -1,12 +1,124 @@
 <template>
   <div>
-    1111111
+    <div style="display: none" class="formTypeFinder">
+      {{ formData.form_type == 1 ? "单页面表单" : "嵌入式表单" }}
+    </div>
+
+    <div>
+      <!--  嵌入式表单    -->
+      <div v-if="formData.form_type == 2">
+        <!-- 未弹出   -->
+        <div v-if="!popupFormStatus">
+          <!--  透明层 点击弹出    -->
+          <div class="transparentOverLay" @click="popupForm"></div>
+
+          <Skeleton
+            :type="type"
+            :loading="loading"
+            @onSubmitSuccess="onSubmitSuccess"
+            @onMounted="onMounted"
+          ></Skeleton>
+        </div>
+
+        <!-- 弹出   -->
+        <div v-else>
+          <!--  移动端  start    -->
+          <!--   v-if="showQingchuMobile && "    -->
+          <div v-if="isMobile()" class="mobileEmbed">
+            <flexBox>
+              <div slot="head">
+                <div>
+                  <div class="mobilePopTitle">表单填写</div>
+                  <zq-icon
+                    name="icon-shanchuyixuanchengyuan"
+                    class="icon-qingchuMobile"
+                    @click="dePopupForm"
+                  ></zq-icon>
+                </div>
+              </div>
+
+              <div slot="body">
+                <div class="box">
+                  <div class="form-title">
+                    <div v-html="ctaTitleAndDesc"></div>
+                  </div>
+
+                  <Skeleton
+                    :type="type"
+                    :loading="loading"
+                    @onSubmitSuccess="onSubmitSuccess"
+                    @onMounted="onMounted"
+                  ></Skeleton>
+                </div>
+              </div>
+            </flexBox>
+          </div>
+          <!--  移动端  end    -->
+
+          <!--  pc端  start    -->
+          <div v-else class="pcEmbed">
+            <div class="whiteBg" :style="'backgroundColor:' + whiteBg">
+              <zq-icon
+                v-if="isEnlarge()"
+                name="icon-qingchu"
+                class="icon-qingchu"
+                @click="dePopupForm"
+              ></zq-icon>
+              <div class="fullscreenInnerWrap">
+                <div class="centerBox">
+                  <div class="form-title">
+                    <div v-html="ctaTitleAndDesc"></div>
+                  </div>
+                  <Skeleton
+                    :type="type"
+                    :loading="loading"
+                    @onSubmitSuccess="onSubmitSuccess"
+                    @onMounted="onMounted"
+                  ></Skeleton>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  pc端  end    -->
+        </div>
+      </div>
+
+      <!-- 单页面表单   -->
+      <div v-else>
+        <div v-if="isMobile()" class="mobileSingle">
+          <Skeleton
+            :type="type"
+            :loading="loading"
+            @onSubmitSuccess="onSubmitSuccess"
+            @onMounted="onMounted"
+          ></Skeleton>
+        </div>
+        <div v-else class="pcSingle">
+          <Skeleton
+            :type="type"
+            :loading="loading"
+            @onSubmitSuccess="onSubmitSuccess"
+            @onMounted="onMounted"
+          ></Skeleton>
+        </div>
+      </div>
+
+      <!--  嵌入式表单用此结果页     -->
+      <div class="submit-over2" v-if="submitSuccess && formData.form_type == 2">
+        <img src="../assets/submitSuccess.png" />
+        <div class="decs" v-html="formData.personal_display_content"></div>
+        <zq-button class="submitBtn mt32" plain @click="reSubmit"
+          >重新提交</zq-button
+        >
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import flexBox from "./components/flexBox/index.vue";
 import Skeleton from "./Skeleton.vue";
 import componentStore from "./utils/componentStore.js";
+import { isMobile } from "./utils/index.js";
 export default {
   name: "formPage",
   data() {
@@ -76,6 +188,7 @@ export default {
     },
   },
   methods: {
+    isMobile,
     async getDetail() {
       let self = this;
       let params = {
@@ -129,9 +242,6 @@ export default {
         window.frameElement && window.frameElement.classList.add("reload");
         location.reload();
       }, 1000);
-    },
-    isMobile() {
-      return this.$common.isMobile();
     },
     shrinkIframes(type) {
       let iframes = this.getAllAncestorIframes();

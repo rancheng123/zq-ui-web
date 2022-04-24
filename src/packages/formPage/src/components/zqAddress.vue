@@ -73,6 +73,7 @@ import zqFormItem from "./zqFormItem.vue";
 import addressData from "../data/districts.json";
 import { mixin } from "../utils/mixin.js";
 import mobileAdress from "./mobileAddress/index.vue";
+import { isMobile } from "../utils/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "zqAddress",
@@ -105,9 +106,6 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    isMobile() {
-      return this.$common.isMobile();
-    },
     iconClearShow() {
       return !!this.vant_addressDefaultValue;
     },
@@ -130,6 +128,7 @@ export default {
   },
   //方法集合
   methods: {
+    isMobile,
     initDistPicker() {
       let self = this;
       let distData = addressData;

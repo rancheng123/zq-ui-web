@@ -36,6 +36,7 @@ import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
 import componentStore from "../utils/componentStore.js";
 import moibleSelect from "./mobileSelect/index.vue";
+import { isMobile } from "../utils/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { zqFormItem, moibleSelect },
@@ -62,9 +63,7 @@ export default {
     options() {
       return this.$attrs.currentItem.options.filter((item) => item.isShow);
     },
-    isMobile() {
-      return this.$common.isMobile();
-    },
+    isMobile,
     selectedLabel: {
       get() {
         let val = "";

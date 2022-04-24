@@ -53,7 +53,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
-import { copeIphoneXHomeIndicator } from "../utils/index.js";
+import { copeIphoneXHomeIndicator, isMobile } from "../utils/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { zqFormItem },
@@ -91,12 +91,6 @@ export default {
       },
     },
   },
-  //监听属性 类似于data概念
-  computed: {
-    isMobile() {
-      return this.$common.isMobile();
-    },
-  },
   //监控data中的数据变化
   watch: {
     value() {
@@ -110,6 +104,7 @@ export default {
   },
   //方法集合
   methods: {
+    isMobile,
     showPickerFn() {
       this.showPicker = true;
       this.$nextTick(() => {

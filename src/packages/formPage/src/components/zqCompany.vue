@@ -58,6 +58,7 @@
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
 import { searchEnterprise } from "../api/index.js"; // 创建表单需要填写的字段
+import { isMobile } from "../utils/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { zqFormItem },
@@ -78,12 +79,6 @@ export default {
       companyList: [],
     };
   },
-  //监听属性 类似于data概念
-  computed: {
-    isMobile() {
-      return this.$common.isMobile();
-    },
-  },
   watch: {
     value: {
       handler() {
@@ -102,6 +97,7 @@ export default {
   mounted() {},
   //方法集合
   methods: {
+    isMobile,
     remoteMethod(query) {
       if (query !== "") {
         searchEnterprise({ keyword: query })
