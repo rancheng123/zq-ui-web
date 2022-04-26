@@ -8,5 +8,13 @@ export default {
   components: {
     popup,
   },
+  props: {
+    formData: {
+      type: Object,
+      default(){
+        return {}
+      }
+    }
+  }
 };
 </script>

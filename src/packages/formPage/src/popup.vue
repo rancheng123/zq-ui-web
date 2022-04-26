@@ -90,39 +90,6 @@ export default {
   },
   methods: {
     isMobile,
-    async getDetail() {
-      let self = this;
-      let params = {
-        form_id: (() => {
-          if (this.type === "formPage") {
-            return this.$route.query.form_id;
-          } else {
-            return this.$route.query.id;
-          }
-        })(),
-        org_id: this.$route.query.org_id,
-      };
-      getReleaseDetailsApp(params)
-        .then(({ code, data, msg }) => {
-          if (code == 0) {
-            self.formData = JSON.parse(data.form_content);
-
-            self.formData.advance_attribute = JSON.parse(
-              self.formData.advance_attribute
-            );
-            self.formData.basic_attribute = JSON.parse(
-              self.formData.basic_attribute
-            );
-
-            self.formData.field_content = JSON.parse(
-              self.formData.field_content
-            );
-            self.loading = false;
-          } else {
-            this.$zqMessage.error(msg);
-          }
-        });
-    },
     onMounted() {
       //this.loading = false;
     },
@@ -277,7 +244,9 @@ export default {
       type: "mounted",
     });
 
-    this.getDetail();
+    let self = this;
+    self.formData = self.closest2('ZqFormPage').formData
+    self.loading = false;
 
     document.documentElement.classList.add("borderRadius");
   },
