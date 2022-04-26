@@ -3,11 +3,32 @@
     <div  class="formTypeFinder">
       哈哈哈啊
     </div>
+    <flexBox>
+      <div slot="head">
+        <div>
+          <div class="mobilePopTitle">表单填写</div>
+          <zq-icon
+              name="icon-shanchuyixuanchengyuan"
+              class="icon-qingchuMobile"
+              @click="dePopupForm"
+          ></zq-icon>
+        </div>
+      </div>
+
+      <div slot="body">
+        <div class="box">
+          <div class="form-title">
+            <div v-html="ctaTitleAndDesc"></div>
+          </div>
+        </div>
+      </div>
+    </flexBox>
 
 
   </div>
 </template>
 <script>
+import flexBox from "./components/flexBox/index.vue";
 import { isMobile } from "./utils/index.js";
 import {getReleaseDetailsApp} from "./api/index.js";
 export default {
@@ -23,6 +44,9 @@ export default {
       },
       ctaTitleAndDesc: "",
     };
+  },
+  components: {
+    flexBox,
   },
   props: {
     type: {
