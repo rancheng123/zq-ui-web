@@ -5,21 +5,15 @@
     </div>
     <div v-show="!loading">
       <formPageCore
-        v-if="type === 'formPage'"
-        @onSubmitSuccess="$emit('onSubmitSuccess', true)"
-        @onMounted="loading = false"
+          v-if="type === 'formPage'"
+          @onSubmitSuccess="$emit('onSubmitSuccess', true)"
+          @onMounted="loading = false"
       ></formPageCore>
-      <previewPageCore
-        v-else
-        @onSubmitSuccess="$emit('onSubmitSuccess', true)"
-        @onMounted="loading = false"
-      ></previewPageCore>
     </div>
   </div>
 </template>
 <script>
 import formPageCore from "./formPageCore.vue";
-import previewPageCore from "./previewPageCore.vue";
 export default {
   name: "Skeleton",
   data() {
@@ -37,7 +31,6 @@ export default {
   },
   components: {
     formPageCore,
-    previewPageCore,
   },
 };
 </script>

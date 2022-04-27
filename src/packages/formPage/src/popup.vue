@@ -20,6 +20,12 @@
           <div class="form-title">
             <div v-html="ctaTitleAndDesc"></div>
           </div>
+          <Skeleton
+              :type="type"
+              :loading="loading"
+              @onSubmitSuccess="onSubmitSuccess"
+              @onMounted="onMounted"
+          ></Skeleton>
         </div>
       </div>
     </flexBox>
@@ -29,8 +35,8 @@
 </template>
 <script>
 import flexBox from "./components/flexBox/index.vue";
+import Skeleton from "./Skeleton.vue";
 import { isMobile } from "./utils/index.js";
-import {getReleaseDetailsApp} from "./api/index.js";
 export default {
   name: "formPage",
   data() {
@@ -47,6 +53,7 @@ export default {
   },
   components: {
     flexBox,
+    Skeleton,
   },
   props: {
     type: {
