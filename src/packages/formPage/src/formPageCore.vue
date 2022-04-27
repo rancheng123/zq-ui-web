@@ -4,95 +4,7 @@
     v-loading="loading"
     :style="[{ backgroundColor: `${whiteBg ? whiteBg : cta_background}` }]"
   >
-    <!-- 拿到数据后显示 -->
-    <div class="copy" :data-clipboard-text="downloadUrl"></div>
-    <div class="from-warp" v-if="success">
-      <div class="from-content" v-if="!is_submit">
-        <!-- 表单项 -->
-        <div class="file-show-content" v-if="!is_submit">
-          <div class="center-scrollbar">
-            <!-- 头图 -->
-            <div class="banner" v-if="formData.form_type == 1">
-              <el-image
-                :src="$domain + formData.basic_attribute.banner"
-                fit="fit"
-                :style="{
-                  height: isMobile
-                    ? formData.basic_attribute.banner_m_height
-                    : formData.basic_attribute.banner_b_height,
-                }"
-                v-show="formData.basic_attribute.banner"
-              >
-                <div slot="error" class="image-slot">
-                  <i class="el-icon-picture-outline"></i>
-                </div>
-              </el-image>
-            </div>
-            <!-- 头图 end-->
-            <div>
-              <div :style="formData.advance_attribute.page.style">
-                <!-- 标题和简介 -->
-                <div class="form-title" v-if="formData.form_type == 1">
-                  <div
-                    class="title"
-                    :style="formData.advance_attribute.title.style"
-                  >
-                    {{ formData.basic_attribute.title }}
-                  </div>
-                  <div
-                    class="inc"
-                    :style="formData.advance_attribute.introduction.style"
-                  >
-                    {{ formData.basic_attribute.introduction }}
-                  </div>
-                </div>
 
-                <!-- 标题和简介 -->
-                <!-- 表单区域 -->
-                <el-row class="center-board-row">
-                  <el-form
-                    label-position="top"
-                    ref="ruleForm"
-                    :model="submitData"
-                    :hide-required-asterisk="true"
-                    class="custom-form"
-                  >
-                    <preview-item
-                      v-for="item in formData.field_content"
-                      class="draggable-item"
-                      :currentItem="item"
-                      :formData="formData"
-                      v-model="submitData"
-                      :key="item.field_name"
-                    />
-                  </el-form>
-                </el-row>
-                <!-- 隐私条款 -->
-                <div class="privacy-warp-sub" v-if="formData.is_privacy == 2">
-                  <zq-checkbox v-model="isReadPrivacy"> </zq-checkbox>
-                  <span
-                    class="privacytext"
-                    @click="previewPrivacy"
-                    v-html="formData.basic_attribute.privacyText"
-                  ></span>
-                </div>
-                <!-- 表单区域 -->
-                <el-button
-                  class="sumbit-btn"
-                  @click="submitForm"
-                  :style="formData.advance_attribute.submitBtn.style"
-                  ><span
-                    :style="formData.basic_attribute.submitBtnText.style"
-                    >{{ formData.basic_attribute.submitBtnText }}</span
-                  ></el-button
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 隐私条框弹窗 -->
     <div class="privacy-warp-mobile-model" v-if="privacyMobileVisible"></div>
     <div class="privacy-warp-mobile" v-if="privacyMobileVisible">
       <div class="privacy-title">
@@ -133,11 +45,11 @@
 </template>
 <script>
 // 表单组件
-import previewItem from "./components/previewItem.vue";
-import Collect from "./utils/collect.js";
-import { getUtmJson } from "./utils/parseUrl.js";
-import componentStore from "./utils/componentStore.js";
-import { isMobile } from "./utils/index.js";
+
+
+
+
+
 
 export default {
   data() {
@@ -182,58 +94,17 @@ export default {
       }
     },
   },
-  components: { previewItem },
+  components: {  },
   mounted() {
-    this.cta_background = this.$route.query.ctaBackground || "";
-    this.unique_id = this.$route.query.unique_id || "";
-    this.form_id = this.$route.query.form_id || "";
-    this.org_id = this.$route.query.org_id || "";
-    this.ppid = this.$route.query.ppid || ""; //父页面id
-    this.isStatistics = this.$route.query.isStatistics == 2 ? false : true;
-    this.downloadUrl = this.$route.query.downloadUrl || "";
-    this.module = this.$route.query.module || "";
-    this.pType = this.$route.query.pType || "";
-    this.pId = this.$route.query.pId || "";
-    this.gType = this.$route.query.gType || "";
-    this.gId = this.$route.query.gId || "";
-    this.zType = this.$route.query.zType || "";
-    this.zId = this.$route.query.zId || "";
-    this.getDetail();
-    this.$nextTick(() => {
-      document.getElementById("app").setAttribute("class", "fullscreen");
-    });
-    this.uo = window.localStorage.getItem("uo") || "";
-    this.is_mobi = isMobile();
-    if (this.is_mobi) {
-      let head = document.getElementsByTagName("head");
-      let meta = document.createElement("meta");
-      meta.name = "viewport";
-      meta.content = "initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
-      head[0].appendChild(meta);
-    }
-    if (this.isStatistics) {
-      this.myCollect = new Collect({
-        org_id: this.org_id,
-        customer_id: this.uo,
-        baseUrl: this.$trackUrl,
-        module_type: "form",
-      });
-      this.myCollect.init({});
-    }
-    window.addEventListener("click", this.sendMessage);
-    this.isWeiXin = this.isweiXin();
 
-    //测试 start
-    //this.is_submit = true;
-    console.log(this, "------------ppp------------");
-    //测试 end
-    componentStore.set("formPage", this);
+
+
   },
   methods: {
     sendMessage() {
       window.parent.postMessage({ type: "cdp" }, "*");
     },
-    isMobile,
+
     checked(key, value) {
       if (this.formData.is_auto_completion == 2) {
         this.getHistoryData(key, value, this.org_id);
@@ -263,77 +134,7 @@ export default {
       });
     },
 
-    async getDetail() {
-      let self = this;
-      let params = {
-        form_id: this.form_id,
-        org_id: this.org_id,
-      };
-      this.$Api.form
-        .getReleaseDetailsApp(params)
-        .then(({ code, data, msg }) => {
-          if (code == 0) {
-            self.formData = JSON.parse(data.form_content);
 
-            self.formData.advance_attribute = JSON.parse(
-              self.formData.advance_attribute
-            );
-            self.formData.basic_attribute = JSON.parse(
-              self.formData.basic_attribute
-            );
-
-            self.formData.field_content = JSON.parse(
-              self.formData.field_content
-            );
-
-            this.$emit("onMounted");
-            self.$emit("onFormDataChange", self.formData);
-            this.$nextTick(() => {
-              this.initData();
-            });
-
-            if (this.formData.basic_attribute.pageTitle) {
-              document.title = this.formData.basic_attribute.pageTitle;
-            }
-            if (this.uo && this.uo != 0) {
-              this.key = "customer_id";
-              if (this.formData.is_auto_completion == 2) {
-                this.$nextTick(() => {
-                  this.getHistoryData(
-                    "renew_customer_id",
-                    this.uo,
-                    this.org_id
-                  );
-                });
-              }
-            }
-            //页面访问买点
-            let params = {
-              page_id: this.form_id, // 必传 页面id
-              page_first_title: self.formData.form_name, // 可传 页面一级标题
-              source_title: "", // 可传 页面来源
-              parent_page_id: this.ppid,
-            };
-
-            //单页面表单
-            if (self.formData.form_type === 1) {
-              params = {
-                ...params,
-                ...getUtmJson(window.top.location, "link"),
-              };
-
-              console.log(params, "--aaaa");
-            }
-
-            // 父级为未发布态 不需要统计
-            if (this.isStatistics) {
-              this.myCollect.$visit(params);
-            }
-          } else {
-            this.$zqMessage.error(msg);
-          }
-        });
-    },
     initData() {
       let submitData = {};
       this.formData.field_content.forEach((item) => {
@@ -475,7 +276,7 @@ export default {
 
           //下载统计
           if (this.downloadUrl && this.downloadUrl != "undefiend") {
-            params.source.utm = getUtmJson(window.top.location, "download");
+
           }
 
           this.$Api.form.commit(params).then(({ code, data, msg }) => {
@@ -502,14 +303,7 @@ export default {
                   this.fnPageJump();
                 } else {
                   // false 说明被iframe嵌套的 如 在cta中预览嵌套表单
-                  if (isMobile()) {
-                    // 因safari的安全机制将“异步”window.open阻挡了所以采用localtion
-                    // 被两级iframe嵌套了
-                    window.parent.parent.location.href =
-                      this.formData.http_jump_link;
-                  } else {
-                    this.fnPageJump();
-                  }
+
                 }
               }
               window.localStorage.setItem("uo", data.customer_id);
@@ -554,7 +348,7 @@ export default {
   },
   watch: {},
   beforeDestroy() {
-    componentStore.clear("formPage");
+
     window.removeEventListener("click", this.sendMessage);
   }, //生命周期 - 销毁之前
 };

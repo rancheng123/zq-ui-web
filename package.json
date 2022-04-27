@@ -6,10 +6,11 @@
   "main": "lib/index.js",
   "style": "lib/index.css",
   "scripts": {
-    "dev": "nodemon --watch src -e js,jsx,scss,less,vue,tsx -x \"npm run buildCore\"",
+    "dev": "nodemon --watch src -e js,jsx,scss,less,vue,tsx -x \"npm run buildCore && npm run addEslintDisable\"",
     "build": "npm run buildCore && npm run copy:style",
     "buildCore": "rollup --config ./rollup.config.js",
-    "copy:style": "gulp build --gulpfile gulpfile.js"
+    "copy:style": "gulp build --gulpfile gulpfile.js",
+    "addEslintDisable": "node ./addEslintDisable.js"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^8.2.1",

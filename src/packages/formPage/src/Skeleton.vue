@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-show="loading" style="background: white">
-      <van-skeleton title :row="20" style="height: 100%; overflow: hidden" />
+      11111
+
     </div>
     <div v-show="!loading">
       <formPageCore
