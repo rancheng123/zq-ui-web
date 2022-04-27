@@ -31,9 +31,6 @@ class ComponentStore {
     // 给组件加入id 属性
     component.selfId = id;
     this.modules[id] = component;
-
-    // 注入子应用（用于调试）
-    component.$sdk.setSubAppCase(this.modules, id);
   }
 
   // 通过id 清除组件

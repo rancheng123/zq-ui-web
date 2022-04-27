@@ -131,7 +131,7 @@
 import { getUtmJson } from "./utils/parseUrl.js";
 import componentStore from "./utils/componentStore.js";
 import { isMobile } from "./utils/index.js";
-
+import request from "./utils/request";
 export default {
   data() {
     return {
@@ -193,7 +193,10 @@ export default {
     this.zId = this.$route.query.zId || "";
     this.getDetail();
     this.$nextTick(() => {
-      document.getElementById("app").setAttribute("class", "fullscreen");
+      if(document.getElementById("app")){
+        document.getElementById("app").setAttribute("class", "fullscreen");
+      }
+
     });
     this.uo = window.localStorage.getItem("uo") || "";
     this.is_mobi = isMobile();
@@ -205,8 +208,7 @@ export default {
       head[0].appendChild(meta);
     }
     if (this.isStatistics) {
-      this.myCollect = {}
-      this.myCollect.init({});
+
     }
     window.addEventListener("click", this.sendMessage);
     this.isWeiXin = this.isweiXin();
@@ -233,7 +235,11 @@ export default {
         value,
         org_id,
       };
-      this.$Api.form.getHistoryData(params).then(({ code, data }) => {
+      request({
+        url: "cdp/form-app/get-info",
+        method: "post",
+        data: params,
+      }).then(({ code, data }) => {
         if (code == 0) {
           let filedKey = Object.keys(data);
           let submitData = {};
@@ -257,8 +263,11 @@ export default {
         form_id: this.form_id,
         org_id: this.org_id,
       };
-      this.$Api.form
-          .getReleaseDetailsApp(params)
+      request({
+        url: "cdp/form-app/details",
+        method: "post",
+        data:params ,
+      })
           .then(({ code, data, msg }) => {
             if (code == 0) {
               self.formData = JSON.parse(data.form_content);
@@ -315,7 +324,7 @@ export default {
 
               // 父级为未发布态 不需要统计
               if (this.isStatistics) {
-                this.myCollect.$visit(params);
+
               }
             } else {
               this.$zqMessage.error(msg);
@@ -344,7 +353,11 @@ export default {
         org_id: this.org_id,
         id: this.formData.privacy_id,
       };
-      this.$Api.form.getPrivacyDetails(params).then(({ code, data, msg }) => {
+      request({
+        url: "cdp/form-app/privacy-details",
+        method: "post",
+        data: params,
+      }).then(({ code, data, msg }) => {
         if (code == 0) {
           this.privacyContent = data.privacy_content;
           this.privacyName = data.privacy_name;
@@ -448,7 +461,7 @@ export default {
           }
 
           const params = {
-            anonymous_id: this.myCollect.$getAnonymousId(),
+            anonymous_id: 11111,
             unique_id: this.unique_id,
             org_id: this.org_id,
             ...this.submitData,
@@ -466,7 +479,11 @@ export default {
             params.source.utm = getUtmJson(window.top.location, "download");
           }
 
-          this.$Api.form.commit(params).then(({ code, data, msg }) => {
+          request({
+            url: "/cdp/form/commit-list",
+            method: "post",
+            data: params,
+          }).then(({ code, data, msg }) => {
             if (code == 0) {
               //获取customer_id，用于c端埋点 -qrj
               window.parent.parent.postMessage(
