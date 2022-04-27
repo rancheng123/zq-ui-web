@@ -57,7 +57,14 @@
                       :hide-required-asterisk="true"
                       class="custom-form"
                   >
-                    <input type="text">
+                    <preview-item
+                        v-for="item in formData.field_content"
+                        class="draggable-item"
+                        :currentItem="item"
+                        :formData="formData"
+                        v-model="submitData"
+                        :key="item.field_name"
+                    />
                   </el-form>
                 </el-row>
                 <!-- 隐私条款 -->
@@ -127,7 +134,7 @@
 <script>
 // 表单组件
 /**/
-
+import previewItem from "./components/previewItem.vue";
 import { getUtmJson } from "./utils/parseUrl.js";
 import componentStore from "./utils/componentStore.js";
 import { isMobile } from "./utils/index.js";
@@ -175,7 +182,7 @@ export default {
       }
     },
   },
-  components: {  },
+  components: { previewItem },
   mounted() {
     this.cta_background = this.$route.query.ctaBackground || "";
     this.unique_id = this.$route.query.unique_id || "";

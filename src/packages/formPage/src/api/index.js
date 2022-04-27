@@ -10,13 +10,3 @@ export function searchEnterprise(data) {
     data,
   });
 }
-
-
-//表单回显c端
-export function getReleaseDetailsApp(data) {
-  return request({
-    url: "cdp/form-app/details",
-    method: "post",
-    data,
-  });
-}
