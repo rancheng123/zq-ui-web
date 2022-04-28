@@ -1,3 +1,4 @@
+/*eslint-disable*/
 /**
  *  面板规则 优先级从下往上
  *  开发思路
@@ -13,7 +14,7 @@
  *    如果隐藏面板，需要校验面板各个状态中的字段是否有激活的面板 有则隐藏激活的面板 递归检验
  *  7、如果是最后一个规则字段的最后规则  一轮校验结束 重置面板的检验状态
  */
-
+import {dateFormat} from "./index";
 export const mixin = {
   mounted() {
     this.hasRuleFlie();
@@ -90,14 +91,12 @@ export const mixin = {
      * @param {*} type
      * @returns
      */
-    dateFormat(time, type) {
-      return this.$common.dateFormat(type, time);
-    },
+    dateFormat,
 
     /**
      * 格式化校验数据
-     * @param {*} item 
-     * @returns 
+     * @param {*} item
+     * @returns
      * Text: "zqInput",
         TextArea: "zqTextarea",
         Select: "zqSelect",

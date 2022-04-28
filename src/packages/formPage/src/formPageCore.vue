@@ -305,6 +305,9 @@ export default {
                     || item.field_type === 'Email'
                     || item.field_type === 'Address'
 
+                    || item.field_type === 'DateTime'
+                    || item.field_type === 'Date'
+                    || item.field_type === 'Time'
 
 
                 )

@@ -15,6 +15,11 @@ import zqCheckbox from "./zqCheckbox.vue";
 import zqInputNumber from "./zqInputNumber.vue";
 import zqEmail from "./zqEmail.vue";
 import zqAddress from "./zqAddress.vue";
+import zqDateTimePicker from "./zqDateTimePicker.vue";
+// 日期
+import zqDatePicker from "./zqDatePicker.vue";
+// 时间
+import zqTimePicker from "./zqTimePicker.vue";
 
 export default {
   name: "DraggableItem",
@@ -29,6 +34,9 @@ export default {
     zqInputNumber,
     zqEmail,
     zqAddress,
+    zqDateTimePicker,
+    zqDatePicker,
+    zqTimePicker,
   },
   data() {
     //这里存放数据
