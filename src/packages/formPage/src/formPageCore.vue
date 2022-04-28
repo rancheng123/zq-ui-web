@@ -616,9 +616,9 @@ export default {
     padding-right: 8px;
   }
 }
-/deep/.el-scrollbar,
-/deep/.el-scrollbar__wrap,
-/deep/.el-scrollbar__view {
+.el-scrollbar,
+.el-scrollbar__wrap,
+.el-scrollbar__view {
   height: 100vh;
 }
 .ml24 {
@@ -659,7 +659,7 @@ export default {
     }
   }
 }
-/deep/.el-form-item {
+.el-form-item {
   margin: 0;
 }
 .sumbit-btn {
@@ -668,13 +668,13 @@ export default {
   min-width: 88px;
   min-height: 40px;
 }
-/deep/.input-with-select {
+.input-with-select {
   width: 100% !important;
 }
 .custom-form {
   //width: 456px;
-  /deep/.el-input__inner,
-  /deep/.el-textarea__inner {
+  .el-input__inner,
+  .el-textarea__inner {
     background-color: transparent;
     background-image: none;
     border-radius: 0px;
@@ -694,7 +694,7 @@ export default {
     min-height: 40px;
     text-align: inherit;
   }
-  /deep/ .van-field {
+  .van-field {
     display: flex;
     align-items: center;
     border: none;
@@ -734,7 +734,7 @@ export default {
       color: #c0c4cc;
     }
   }
-  /deep/ .van-picker {
+  .van-picker {
     .van-picker-column__item {
       padding: 0 24px;
       font-size: 14px;
@@ -799,16 +799,16 @@ export default {
     width: auto;
   }
 
-  /deep/.form-item-label-warp .el-input,
-  /deep/.form-item-label-warp .el-textarea,
-  /deep/.form-item-label-warp .el-select {
+  .form-item-label-warp .el-input,
+  .form-item-label-warp .el-textarea,
+  .form-item-label-warp .el-select {
     width: 456px !important;
   }
 }
-/deep/.el-form--label-top .el-form-item__label {
+.el-form--label-top .el-form-item__label {
   padding: 0;
 }
-/deep/.el-form-item {
+.el-form-item {
   margin-bottom: 24px;
 }
 .privacy-warp-mobile-model {
@@ -886,9 +886,9 @@ export default {
   }
   .preview-warp {
     width: 100%;
-    /deep/.form-item-label-warp .el-input,
-    /deep/ .form-item-label-warp .el-textarea,
-    /deep/.form-item-label-warp .el-select {
+    .form-item-label-warp .el-input,
+    .form-item-label-warp .el-textarea,
+    .form-item-label-warp .el-select {
       width: 100% !important;
       width: 100% !important;
     }

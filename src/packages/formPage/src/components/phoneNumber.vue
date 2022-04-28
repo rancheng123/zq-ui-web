@@ -45,6 +45,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
+import request from "../utils/request";
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "phoneNumber",
@@ -95,7 +96,11 @@ export default {
       const params = {
         value: this.value[this.$attrs.currentItem.field_name],
       };
-      this.$Api.form.getPhoneCode(params).then(({ code, msg }) => {
+      request({
+        url: "/cdp/form-app/get-code",
+        method: "post",
+        data: params,
+      }).then(({ code, msg }) => {
         if (code == 0) {
           let timesRun = 90;
           this.btnDisabled = true;
@@ -155,7 +160,11 @@ export default {
         value: this.value[this.$attrs.currentItem.field_name],
         code: this.value[this.$attrs.currentItem.field_name + "code"],
       };
-      this.$Api.form.checkPhoneCode(params).then(({ code }) => {
+      request({
+        url: "/cdp/form-app/check-code",
+        method: "post",
+        data: params,
+      }).then(({ code }) => {
         if (code == 0) {
           this.$emit("checked", this.$attrs.currentItem.field_name);
           this.checkedStatus = 1;
