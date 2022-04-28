@@ -243,7 +243,7 @@ export default {
         org_id,
       };
       request({
-        url: "cdp/form-app/get-info",
+        url: this.closest2('ZqFormPage').apiPrefix + "cdp/form-app/get-info",
         method: "post",
         data: params,
       }).then(({ code, data }) => {
@@ -271,7 +271,7 @@ export default {
         org_id: this.org_id,
       };
       request({
-        url: "cdp/form-app/details",
+        url: this.closest2('ZqFormPage').apiPrefix + "cdp/form-app/details",
         method: "post",
         data:params ,
       })
@@ -372,7 +372,7 @@ export default {
         id: this.formData.privacy_id,
       };
       request({
-        url: "cdp/form-app/privacy-details",
+        url: this.closest2('ZqFormPage').apiPrefix + "cdp/form-app/privacy-details",
         method: "post",
         data: params,
       }).then(({ code, data, msg }) => {
@@ -498,7 +498,7 @@ export default {
           }
 
           request({
-            url: "/cdp/form/commit-list",
+            url: this.closest2('ZqFormPage').apiPrefix + "/cdp/form/commit-list",
             method: "post",
             data: params,
           }).then(({ code, data, msg }) => {

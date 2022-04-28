@@ -2,7 +2,6 @@ import axios from "axios";
 import { getToken, removeToken } from "./auth.js";
 import { Message, MessageBox } from "element-ui";
 const service = axios.create({
-  baseURL: "/cdpApi/",
   timeout: 6000000,
 });
 service.interceptors.request.use(

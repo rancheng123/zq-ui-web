@@ -97,7 +97,7 @@ export default {
         value: this.value[this.$attrs.currentItem.field_name],
       };
       request({
-        url: "/cdp/form-app/get-code",
+        url: this.closest2('ZqFormPage').apiPrefix + "/cdp/form-app/get-code",
         method: "post",
         data: params,
       }).then(({ code, msg }) => {
@@ -161,7 +161,7 @@ export default {
         code: this.value[this.$attrs.currentItem.field_name + "code"],
       };
       request({
-        url: "/cdp/form-app/check-code",
+        url: this.closest2('ZqFormPage').apiPrefix + "/cdp/form-app/check-code",
         method: "post",
         data: params,
       }).then(({ code }) => {

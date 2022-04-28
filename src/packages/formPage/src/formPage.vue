@@ -14,6 +14,12 @@ export default {
       default(){
         return {}
       }
+    },
+    apiPrefix: {
+      type: String,
+      default(){
+        return '/api'
+      }
     }
   }
 };
