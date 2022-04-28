@@ -1,0 +1,31 @@
+{
+  "1017": {
+    "10160": {
+      "chinese": "安徽",
+      "pinyin": "an hui"
+    },
+    "10161": {
+      "chinese": "北京",
+      "pinyin": "bei jing"
+    }
+  },
+  "10160": {
+    "100032": {
+      "chinese": "安庆",
+      "pinyin": "an qing"
+    }
+  },
+  "10161": {
+    "100049": {
+      "chinese": "昌平",
+      "pinyin": "chang ping"
+    }
+  },
+
+  "100032": {
+    "101149": {
+      "chinese": "迎江区",
+      "pinyin": "ying jiang qu"
+    }
+  }
+}

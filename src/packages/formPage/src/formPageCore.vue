@@ -303,6 +303,9 @@ export default {
 
                     || item.field_type === 'zqInputNumber'
                     || item.field_type === 'Email'
+                    || item.field_type === 'Address'
+
+
 
                 )
 

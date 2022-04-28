@@ -14,6 +14,7 @@ import zqRadio from "./zqRadio.vue";
 import zqCheckbox from "./zqCheckbox.vue";
 import zqInputNumber from "./zqInputNumber.vue";
 import zqEmail from "./zqEmail.vue";
+import zqAddress from "./zqAddress.vue";
 
 export default {
   name: "DraggableItem",
@@ -27,6 +28,7 @@ export default {
     zqCheckbox,
     zqInputNumber,
     zqEmail,
+    zqAddress,
   },
   data() {
     //这里存放数据
