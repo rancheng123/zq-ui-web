@@ -290,6 +290,17 @@ export default {
                   self.formData.field_content
               );
 
+
+              //测试 start
+              self.formData.field_content = self.formData.field_content.filter((item)=>{
+                return item.field_type === 'PhoneNumber'
+
+              })
+              //测试 end
+
+              debugger
+
+
               this.$emit("onMounted");
               self.$emit("onFormDataChange", self.formData);
               this.$nextTick(() => {

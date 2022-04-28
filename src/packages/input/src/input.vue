@@ -1,6 +1,5 @@
 <template>
   <div class="inputWrap">
-    this is zq-input version13
     <el-input :style="{ width: width }" v-bind="$attrs" class="zq-input" v-on="$listeners">
       <slot />
     </el-input>
