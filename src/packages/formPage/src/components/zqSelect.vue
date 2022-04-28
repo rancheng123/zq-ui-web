@@ -4,14 +4,26 @@
     <zq-form-item v-bind="$attrs">
       <template>
         <zq-select
-          :style="$attrs.formData.advance_attribute.input.style"
-          v-model="selectedLabel"
-          :placeholder="$attrs.currentItem.placeholder"
-          class="input-with-select"
-          :options="options"
-          @change="handlerChange"
+            v-if="!isMobile"
+            :style="$attrs.formData.advance_attribute.input.style"
+            v-model="selectedLabel"
+            :placeholder="$attrs.currentItem.placeholder"
+            class="input-with-select"
+            :options="options"
+            @change="handlerChange"
         >
         </zq-select>
+
+        <moibleSelect
+            v-else
+            :label="selectedLabel"
+            :value="$attrs.currentItem.default_value"
+            :style1="$attrs.formData.advance_attribute.input.style"
+            :placeholder="$attrs.currentItem.placeholder"
+            :data="options"
+            @confirm="onConfirm"
+            @change="handlerChange"
+        ></moibleSelect>
       </template>
     </zq-form-item>
   </div>
@@ -23,10 +35,11 @@
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
 import componentStore from "../utils/componentStore.js";
+import moibleSelect from "./mobileSelect/index.vue";
 import { isMobile } from "../utils/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: { zqFormItem },
+  components: { zqFormItem, moibleSelect },
   inheritAttrs: false,
   mixins: [mixin],
   props: {
