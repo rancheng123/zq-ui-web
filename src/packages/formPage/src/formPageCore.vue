@@ -293,7 +293,18 @@ export default {
 
               //测试 start
               self.formData.field_content = self.formData.field_content.filter((item)=>{
-                return item.field_type === 'PhoneNumber'
+                return (
+                    item.field_type === 'PhoneNumber'
+                    || item.field_type === 'Text'
+                    || item.field_type === 'Select'
+                    || item.field_type === 'TextArea'
+                    || item.field_type === 'Radio'
+                    || item.field_type === 'CheckBox'
+
+                    || item.field_type === 'zqInputNumber'
+                    || item.field_type === 'Email'
+
+                )
 
               })
               //测试 end
