@@ -1,6 +1,6 @@
 {
   "name": "zq-ui-web-new",
-  "version":"0.0.13",
+  "version": "0.0.13",
   "description": "a lib for Zq",
   "private": false,
   "main": "lib/index.js",
@@ -23,6 +23,8 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
     "nodemon": "^2.0.7",
+    "qiniu": "^7.5.0",
+    "qiniu-js": "^3.4.0",
     "rollup": "^2.44.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-css-only": "^3.1.0",

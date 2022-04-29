@@ -309,6 +309,12 @@ export default {
                     || item.field_type === 'Date'
                     || item.field_type === 'Time'
 
+                    || item.field_type === 'Image'
+                    || item.field_type === 'Decimal'
+
+
+
+
 
                 )
 

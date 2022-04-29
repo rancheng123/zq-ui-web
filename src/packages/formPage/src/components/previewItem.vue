@@ -20,6 +20,12 @@ import zqDateTimePicker from "./zqDateTimePicker.vue";
 import zqDatePicker from "./zqDatePicker.vue";
 // 时间
 import zqTimePicker from "./zqTimePicker.vue";
+// 图片
+import zqImage from "./zqImage.vue";
+// 金额
+import zqAmount from "./zqAmount.vue";
+// 公司
+import zqCompany from "./zqCompany.vue";
 
 export default {
   name: "DraggableItem",
@@ -37,6 +43,10 @@ export default {
     zqDateTimePicker,
     zqDatePicker,
     zqTimePicker,
+    zqImage,
+    zqAmount,
+    zqCompany,
+
   },
   data() {
     //这里存放数据
