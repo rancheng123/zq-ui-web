@@ -179,8 +179,8 @@ export default {
   }
 }
 .flex-row-jc {
-  max-width: 342px;
-  margin-left: -12px;
+  //max-width: 342px;
+  //margin-left: -12px;
   .up-img {
     float: left;
     width: 33.33%;

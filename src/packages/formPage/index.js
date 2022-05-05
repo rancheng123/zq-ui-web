@@ -1,4 +1,4 @@
-import ZqFormPage from './src/formPage.vue';
+import ZqFormPage from './src/index.vue';
 
 /* istanbul ignore next */
 ZqFormPage.install = function (Vue) {
