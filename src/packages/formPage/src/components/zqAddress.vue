@@ -13,7 +13,7 @@
         ></el-cascader>
       </template>
       <template v-else>
-        <div class="flex-row-jc">
+        <div>
           <mobileAdress
             :flexRange="$attrs.formData.form_type == 2 ? 0 : 188"
             :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
