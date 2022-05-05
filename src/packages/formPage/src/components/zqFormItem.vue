@@ -220,9 +220,9 @@ export default {
 }
 
 .form-item-label-warp {
-  /deep/.el-input,
-  /deep/.el-textarea,
-  /deep/.el-select {
+  .el-input,
+  .el-textarea,
+  .el-select {
     width: 100% !important;
   }
   .label-text {
@@ -233,7 +233,7 @@ export default {
     display: inline-block;
   }
 }
-/deep/.input-with-select {
+.input-with-select {
   width: 100% !important;
 }
 .el-form--label-top .el-form-item__label {

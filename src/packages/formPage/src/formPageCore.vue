@@ -14,7 +14,7 @@
             <!-- 头图 -->
             <div class="banner" v-if="formData.form_type == 1">
               <el-image
-                  :src="$domain + formData.basic_attribute.banner"
+                  :src="domain() + formData.basic_attribute.banner"
                   fit="fit"
                   :style="{
                   height: isMobile
@@ -227,6 +227,10 @@ export default {
     componentStore.set("formPage", this);
   },
   methods: {
+    domain(){
+      var res = this.closest2('ZqFormPage').domain
+      return res
+    },
     sendMessage() {
       window.parent.postMessage({ type: "cdp" }, "*");
     },
@@ -635,7 +639,7 @@ export default {
   height: 100%;
   background: #fff;
   overflow-y: auto;
-  /deep/.el-input__inner {
+  .el-input__inner {
     padding-right: 8px;
   }
 }
@@ -668,7 +672,7 @@ export default {
   width: 100%;
   height: 100%;
   .banner {
-    /deep/ .el-image {
+     .el-image {
       width: 100%;
       height: 100%;
       display: flex;

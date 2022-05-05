@@ -137,7 +137,7 @@ export default {
     margin-left: 16px;
   }
 }
-/deep/ .van-picker {
+ .van-picker {
   .van-picker-column__item {
     justify-content: left;
   }

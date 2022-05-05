@@ -159,7 +159,7 @@ export default {
     margin-left: 16px;
   }
 }
-/deep/ .van-picker {
+ .van-picker {
   .van-picker-column__item {
     justify-content: left;
   }
@@ -204,7 +204,7 @@ export default {
   }
 }
 
-.input-with-select /deep/.van-search__content {
+.input-with-select .van-search__content {
   background-color: transparent !important;
   padding-left: 0 !important;
   .van-field .van-field__left-icon {

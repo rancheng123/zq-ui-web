@@ -17,7 +17,7 @@
           <div class="flex-row-jc">
             <div class="up-img" v-for="(item, index) in fileList" :key="index">
               <div class="img-upload">
-                <img class="banner" :src="$domain + item.key" alt="" />
+                <img class="banner" :src="domain() + item.key" alt="" />
                 <div class="delete-wrapper" @click.stop="handleRemove(item)">
                   <zq-icon name="icon-shanchuicon-normal"></zq-icon>
                 </div>
@@ -84,6 +84,10 @@ export default {
   },
   //方法集合
   methods: {
+    domain(){
+      var res = this.closest2('ZqFormPage').domain
+      return res
+    },
     handleRemove(data) {
       this.fileList = this.fileList.filter((item) => item.key != data.key);
     },
@@ -167,10 +171,10 @@ export default {
 }
 .zq-image__comp {
   width: 100%;
-  /deep/ .el-upload {
+   .el-upload {
     width: 100%;
   }
-  /deep/ .el-upload-list {
+   .el-upload-list {
     display: none;
   }
 }

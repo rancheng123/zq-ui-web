@@ -134,7 +134,7 @@ export default {
   // justify-content: space-between;
   width: 100%;
   .show_prefix-icon {
-    /deep/.el-input__prefix {
+    .el-input__prefix {
       display: none;
     }
   }

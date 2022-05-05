@@ -70,13 +70,13 @@ export default {
 <style lang="less" scoped>
 //@import url(); 引入公共css类
 .checkbox-warp {
-  /deep/.el-form-item__content {
+  .el-form-item__content {
     .el-checkbox-group {
       display: flex;
       flex-direction: column;
     }
   }
-  /deep/.el-checkbox {
+  .el-checkbox {
     margin-bottom: 8px;
     &:nth-last-child(1) {
       margin-bottom: 0px;

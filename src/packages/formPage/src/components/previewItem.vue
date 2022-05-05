@@ -154,7 +154,7 @@ export default {
   .el-select {
     width: 100% !important;
   }
-  /deep/.el-input-number {
+  .el-input-number {
     // width: 100% !important;
     overflow: hidden !important;
   }

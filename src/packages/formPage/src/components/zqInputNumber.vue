@@ -70,14 +70,14 @@ export default {
 </script>
 <style lang="less" scoped>
 //@import url(); 引入公共css类
-/deep/.el-input-number__decrease,
-/deep/.el-input-number__increase {
+.el-input-number__decrease,
+.el-input-number__increase {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
-/deep/.el-input-number {
+.el-input-number {
   text-align: center !important;
   overflow: hidden !important;
   width: 100%;

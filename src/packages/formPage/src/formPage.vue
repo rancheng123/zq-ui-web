@@ -20,7 +20,13 @@ export default {
       default(){
         return '/api'
       }
-    }
+    },
+    domain: {
+      type: String,
+      default(){
+        return ''
+      }
+    },
   }
 };
 </script>
