@@ -1,0 +1,39 @@
+.zq-form-item-12212342343{
+  //@import url(); 引入公共css类
+  .flex-row {
+    display: flex;
+    align-items: center;
+    .description {
+      padding-left: 16px;
+    }
+  }
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .help-text__lable {
+    display: inline-flex; // 修复父级设置 flex-direction: column; 后的下间距bug
+  }
+
+  .form-item-label-warp {
+    .el-input,
+    .el-textarea,
+    .el-select {
+      width: 100% !important;
+    }
+    .label-text {
+      display: inline-block;
+      flex: none;
+    }
+    .description {
+      display: inline-block;
+    }
+  }
+  .input-with-select {
+    width: 100% !important;
+  }
+  .el-form--label-top .el-form-item__label {
+    padding: 0;
+    line-height: 0px;
+  }
+}

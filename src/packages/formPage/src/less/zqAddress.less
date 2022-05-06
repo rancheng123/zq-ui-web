@@ -1,0 +1,48 @@
+//@import url(); 引入公共css类
+.code-row {
+  display: flex;
+  justify-content: space-between;
+  .el-input {
+    flex: 1;
+    .el-input__inner {
+      height: 40px !important;
+      line-height: 40px !important;
+    }
+  }
+  .code-btn {
+    margin-left: 16px;
+  }
+}
+.el-cascader {
+  width: 100%;
+}
+.el-cascader-panel {
+  height: 200px;
+}
+.m_address {
+  .van-icon-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .el-cascader-panel {
+    height: 200px;
+    width: 100vw !important;
+    overflow: auto !important;
+  }
+}
+// .el-popper {
+//   width: 100vw !important;
+//   overflow: auto !important;
+// }
+
+.van-popup--bottom.van-popup--round {
+  border-radius: 8px 8px 0 0;
+}
+.van-cascader__option--selected {
+  color: #ff724f;
+}
+.van-cascader .van-tabs__line {
+  background-color: #ff724f;
+}
