@@ -82,18 +82,3 @@ export default {
   },
 };
 </script>
-<style lang="less">
-//@import url(); 引入公共css类
-.radio-warp {
-  .el-form-item__content {
-    display: flex;
-    flex-direction: column;
-  }
-  .zq-radio {
-    margin-bottom: 8px;
-    &:nth-last-child(1) {
-      margin-bottom: 0px;
-    }
-  }
-}
-</style>

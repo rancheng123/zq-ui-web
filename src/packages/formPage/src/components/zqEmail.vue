@@ -1,41 +1,43 @@
 <!-- DJH time: -->
 <template>
-  <div class="flex-auto">
-    <zq-form-item v-bind="$attrs">
-      <template>
-        <zq-input
-          :style="$attrs.formData.advance_attribute.input.style"
-          v-model.trim="value[$attrs.currentItem.field_name]"
-          :placeholder="$attrs.currentItem.placeholder"
-          class="input-with-select"
-          @blur="emailChange"
-        >
-        </zq-input>
-      </template>
-    </zq-form-item>
-    <zq-form-item
-      v-bind="$attrs"
-      :isHiddenLabel="true"
-      :prop="$attrs.currentItem.field_name + 'code'"
-      v-if="$attrs.currentItem.isVerificationCode == 2"
-    >
-      <template>
-        <div class="code-row">
+  <div class="zqEmail-124143">
+    <div class="flex-auto">
+      <zq-form-item v-bind="$attrs">
+        <template>
           <zq-input
-            :style="$attrs.formData.advance_attribute.input.style"
-            @input="codeInputBlur"
-            v-model.trim="value[$attrs.currentItem.field_name + 'code']"
-          ></zq-input>
-          <zq-button
-            class="code-btn"
-            @click="sendCode"
-            :disabled="!value[$attrs.currentItem.field_name] || btnDisabled"
+              :style="$attrs.formData.advance_attribute.input.style"
+              v-model.trim="value[$attrs.currentItem.field_name]"
+              :placeholder="$attrs.currentItem.placeholder"
+              class="input-with-select"
+              @blur="emailChange"
           >
-            {{ codeBtnText }}
-          </zq-button>
-        </div>
-      </template>
-    </zq-form-item>
+          </zq-input>
+        </template>
+      </zq-form-item>
+      <zq-form-item
+          v-bind="$attrs"
+          :isHiddenLabel="true"
+          :prop="$attrs.currentItem.field_name + 'code'"
+          v-if="$attrs.currentItem.isVerificationCode == 2"
+      >
+        <template>
+          <div class="code-row">
+            <zq-input
+                :style="$attrs.formData.advance_attribute.input.style"
+                @input="codeInputBlur"
+                v-model.trim="value[$attrs.currentItem.field_name + 'code']"
+            ></zq-input>
+            <zq-button
+                class="code-btn"
+                @click="sendCode"
+                :disabled="!value[$attrs.currentItem.field_name] || btnDisabled"
+            >
+              {{ codeBtnText }}
+            </zq-button>
+          </div>
+        </template>
+      </zq-form-item>
+    </div>
   </div>
 </template>
 
@@ -199,20 +201,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.code-row {
-  display: flex;
-  justify-content: space-between;
-  .el-input {
-    flex: 1;
-    .el-input__inner {
-      height: 40px !important;
-      line-height: 40px !important;
-    }
-  }
-  .code-btn {
-    margin-left: 16px;
-  }
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="el-cascader addressWrap" @click="showAddress">
+    <div class="el-cascader addressWrap-432142324" @click="showAddress">
       <span v-if="province">
         {{ showChineseName(province, addressJson[nation]) }}
         <span v-if="city"> / </span>
@@ -93,7 +93,7 @@
                     :src="
                       require('./img/right.png')
                     "
-                    alt=""
+            fo        alt=""
                   />-->
                   {{ item.chinese }}
                 </dd>
@@ -127,14 +127,16 @@
   </div>
 </template>
 <script>
+import addressJson from "../../data/address.json";
 import componentStore from "../../utils/componentStore.js";
 import { IsIphonex } from "../../utils/index.js";
 export default {
   name: "mobileAdress",
   data() {
     return {
+      IsIphonex: false,
       show: false,
-      addressJson: this.extraData(window.addressJson_format1),
+      addressJson: this.extraData(addressJson),
       address: "",
       area: "",
       city: "",
@@ -167,6 +169,7 @@ export default {
     },
   },
   mounted() {
+    this.IsIphonex = IsIphonex()
     componentStore.set("address", this);
 
     // bar 的逻辑
@@ -186,7 +189,7 @@ export default {
   computed: {
     panelWrapStyle() {
       let style = "height:" + this.boxHeight + "px;";
-      if (IsIphonex()) {
+      if (this.IsIphonex) {
         style += "padding-bottom:68px";
       }
 
@@ -369,6 +372,3 @@ export default {
   },
 };
 </script>
-<style lang="less">
-@import "index.less";
-</style>

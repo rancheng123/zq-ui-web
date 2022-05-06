@@ -1,5 +1,5 @@
 <template>
-  <div class="flexBoxWrap">
+  <div class="flexBoxWrap-21432143">
     <div class="flexBoxHead" ref="flexBoxHead">
       <slot name="head"></slot>
     </div>
@@ -29,20 +29,3 @@ export default {
   },
 };
 </script>
-<style lang="less">
-.flexBoxWrap {
-  //position: absolute;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  .flexBoxBody {
-    overflow: scroll;
-  }
-  .flexBoxBody::-webkit-scrollbar {
-    height: 0;
-    width: 0;
-    color: transparent;
-  }
-}
-</style>

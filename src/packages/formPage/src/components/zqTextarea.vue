@@ -1,21 +1,24 @@
 <!-- DJH time: -->
 <template>
-  <div class="flex-auto">
-    <zq-form-item v-bind="$attrs">
-      <!-- 带区号的手机号 -->
-      <template>
-        <zq-input
-          :style="$attrs.formData.advance_attribute.input.style"
-          v-model.trim="value[$attrs.currentItem.field_name]"
-          type="textarea"
-          :placeholder="$attrs.currentItem.placeholder"
-          class="input-with-select"
-          @blur="handlerChange(value[$attrs.currentItem.field_name])"
-        >
-        </zq-input>
-      </template>
-    </zq-form-item>
+  <div class="zqTextarea-2343143">
+    <div class="flex-auto">
+      <zq-form-item v-bind="$attrs">
+        <!-- 带区号的手机号 -->
+        <template>
+          <zq-input
+              :style="$attrs.formData.advance_attribute.input.style"
+              v-model.trim="value[$attrs.currentItem.field_name]"
+              type="textarea"
+              :placeholder="$attrs.currentItem.placeholder"
+              class="input-with-select"
+              @blur="handlerChange(value[$attrs.currentItem.field_name])"
+          >
+          </zq-input>
+        </template>
+      </zq-form-item>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -71,20 +74,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.code-row {
-  display: flex;
-  justify-content: space-between;
-  .el-input {
-    flex: 1;
-    .el-input__inner {
-      height: 40px !important;
-      line-height: 40px !important;
-    }
-  }
-  .code-btn {
-    margin-left: 16px;
-  }
-}
-</style>

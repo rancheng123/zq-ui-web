@@ -1,5 +1,6 @@
 <template>
-  <popup :type="'formPage'"></popup>
+  <popup :type="'formPage'"
+  ></popup>
 </template>
 <script>
 import popup from "./popup.vue";
@@ -27,6 +28,10 @@ export default {
         return ''
       }
     },
-  }
+
+  },
 };
 </script>
+<style lang="less">
+@import "./less/index.less";
+</style>

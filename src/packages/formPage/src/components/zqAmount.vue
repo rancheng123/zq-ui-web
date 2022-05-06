@@ -1,18 +1,21 @@
 <!-- DJH time: -->
 <template>
-  <zq-form-item v-bind="$attrs">
-    <template>
-      <zq-input
-        :style="$attrs.formData.advance_attribute.input.style"
-        v-model.trim="value[$attrs.currentItem.field_name]"
-        :placeholder="$attrs.currentItem.placeholder"
-        class="input-with-select"
-        @blur="handlerChange"
-        onkeyup="value=value.replace(/[^\d^\.]+/g,'').replace('.','$#$').replace(/\./g,'').replace('$#$','.')"
-      >
-      </zq-input>
-    </template>
-  </zq-form-item>
+  <div class="zqAmount-2134424">
+    <zq-form-item v-bind="$attrs">
+      <template>
+        <zq-input
+            :style="$attrs.formData.advance_attribute.input.style"
+            v-model.trim="value[$attrs.currentItem.field_name]"
+            :placeholder="$attrs.currentItem.placeholder"
+            class="input-with-select"
+            @blur="handlerChange"
+            onkeyup="value=value.replace(/[^\d^\.]+/g,'').replace('.','$#$').replace(/\./g,'').replace('$#$','.')"
+        >
+        </zq-input>
+      </template>
+    </zq-form-item>
+  </div>
+
 </template>
 
 <script>
@@ -53,20 +56,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.code-row {
-  display: flex;
-  justify-content: space-between;
-  .el-input {
-    flex: 1;
-    .el-input__inner {
-      height: 40px !important;
-      line-height: 40px !important;
-    }
-  }
-  .code-btn {
-    margin-left: 16px;
-  }
-}
-</style>

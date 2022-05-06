@@ -1,6 +1,6 @@
 <!-- DJH time: -->
 <template>
-  <div class="flex-auto">
+  <div class="flex-auto checkbox-warp-21432234423423">
     <zq-form-item v-bind="$attrs" class="checkbox-warp">
       <template>
         <el-checkbox-group @change="handlerChange" v-model="checkeds">
@@ -67,20 +67,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.checkbox-warp {
-  .el-form-item__content {
-    .el-checkbox-group {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  .el-checkbox {
-    margin-bottom: 8px;
-    &:nth-last-child(1) {
-      margin-bottom: 0px;
-    }
-  }
-}
-</style>

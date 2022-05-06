@@ -1,14 +1,13 @@
 <template>
   <div>
     <div v-show="loading" style="background: white">
-      11111
-
+      <van-skeleton title :row="20" style="height: 100%; overflow: hidden" />
     </div>
     <div v-show="!loading">
       <formPageCore
-          v-if="type === 'formPage'"
-          @onSubmitSuccess="$emit('onSubmitSuccess', true)"
-          @onMounted="loading = false"
+        v-if="type === 'formPage'"
+        @onSubmitSuccess="$emit('onSubmitSuccess', true)"
+        @onMounted="loading = false"
       ></formPageCore>
     </div>
   </div>
@@ -35,8 +34,3 @@ export default {
   },
 };
 </script>
-<style lang="less">
-.van-skeleton {
-  padding: 0px;
-}
-</style>

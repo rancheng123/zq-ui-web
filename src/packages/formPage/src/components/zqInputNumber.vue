@@ -1,6 +1,6 @@
 <!-- DJH time: -->
 <template>
-  <div>
+  <div class="zq-input-number-wrap-21332213213">
     <zq-form-item v-bind="$attrs">
       <!-- 带区号的手机号 -->
       <template>
@@ -68,19 +68,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.el-input-number__decrease,
-.el-input-number__increase {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-.el-input-number {
-  text-align: center !important;
-  overflow: hidden !important;
-  width: 100%;
-  max-width: 180px;
-}
-</style>

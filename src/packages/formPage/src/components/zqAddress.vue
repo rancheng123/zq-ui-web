@@ -1,76 +1,79 @@
 <!-- DJH time: -->
 <template>
-  <div class="flex-auto">
-    <zq-form-item v-bind="$attrs">
-      <template v-if="!isMobile">
-        <el-cascader
-          :style="$attrs.formData.advance_attribute.input.style"
-          :placeholder="$attrs.currentItem.provincePlaceholder"
-          :options="options"
-          v-model.trim="addressDefaultValue"
-          @change="handleChange"
-          clearable
-        ></el-cascader>
-      </template>
-      <template v-else>
-        <div>
-          <mobileAdress
-            :flexRange="$attrs.formData.form_type == 2 ? 0 : 188"
-            :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
-            :style="$attrs.formData.advance_attribute.input.style"
-            :value="vant_addressDefaultValue"
-            @finish="onConfirm"
-          ></mobileAdress>
-        </div>
-      </template>
-    </zq-form-item>
+  <div class="zqAddress-1311424">
+    <div class="flex-auto">
+      <zq-form-item v-bind="$attrs">
+        <template v-if="!isMobile">
+          <el-cascader
+              :style="$attrs.formData.advance_attribute.input.style"
+              :placeholder="$attrs.currentItem.provincePlaceholder"
+              :options="options"
+              v-model.trim="addressDefaultValue"
+              @change="handleChange"
+              clearable
+          ></el-cascader>
+        </template>
+        <template v-else>
+          <div>
+            <mobileAdress
+                :flexRange="$attrs.formData.form_type == 2 ? 0 : 188"
+                :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
+                :style="$attrs.formData.advance_attribute.input.style"
+                :value="vant_addressDefaultValue"
+                @finish="onConfirm"
+            ></mobileAdress>
+          </div>
+        </template>
+      </zq-form-item>
 
-    <zq-form-item
-      v-if="$attrs.currentItem.is_address == 2"
-      :isHiddenLabel="true"
-      v-bind="$attrs"
-      :prop="$attrs.currentItem.field_name + 'address'"
-      :description="$attrs.currentItem.helpTextArrangement"
-      :required="$attrs.currentItem.is_required == 2"
-    >
-      <template>
-        <zq-input
-          :style="$attrs.formData.advance_attribute.input.style"
-          :placeholder="$attrs.currentItem.addressPlaceholder"
-          class="input-with-select"
-          @blur="change"
-          v-model.trim="addressInfo"
-        ></zq-input>
-      </template>
-    </zq-form-item>
+      <zq-form-item
+          v-if="$attrs.currentItem.is_address == 2"
+          :isHiddenLabel="true"
+          v-bind="$attrs"
+          :prop="$attrs.currentItem.field_name + 'address'"
+          :description="$attrs.currentItem.helpTextArrangement"
+          :required="$attrs.currentItem.is_required == 2"
+      >
+        <template>
+          <zq-input
+              :style="$attrs.formData.advance_attribute.input.style"
+              :placeholder="$attrs.currentItem.addressPlaceholder"
+              class="input-with-select"
+              @blur="change"
+              v-model.trim="addressInfo"
+          ></zq-input>
+        </template>
+      </zq-form-item>
 
-    <!--    <van-field
-      class="m_address"
-      v-model="vant_addressDefaultValue"
-      :style="$attrs.formData.advance_attribute.input.style"
-      is-link
-      readonly
-      :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
-      @click="showArea = true"
-    >
-    </van-field>
-    <van-popup v-model="showArea" round position="bottom">
-      <van-cascader
-        title="请选择地址"
-        :options="areaList"
-        @close="showArea = false"
-        @change="areaChange"
-        @finish="onConfirm"
-      />
-    </van-popup>-->
+      <!--    <van-field
+        class="m_address"
+        v-model="vant_addressDefaultValue"
+        :style="$attrs.formData.advance_attribute.input.style"
+        is-link
+        readonly
+        :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
+        @click="showArea = true"
+      >
+      </van-field>
+      <van-popup v-model="showArea" round position="bottom">
+        <van-cascader
+          title="请选择地址"
+          :options="areaList"
+          @close="showArea = false"
+          @change="areaChange"
+          @finish="onConfirm"
+        />
+      </van-popup>-->
+    </div>
   </div>
+
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import zqFormItem from "./zqFormItem.vue";
 import addressData from "../data/districts.json";
+import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
 import mobileAdress from "./mobileAddress/index.vue";
 import { isMobile } from "../utils/index.js";
@@ -83,6 +86,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      isMobile: false,
       addressDefaultValue: [],
       vant_addressDefaultValue: "",
       addressInfo: "",
@@ -128,7 +132,6 @@ export default {
   },
   //方法集合
   methods: {
-    isMobile,
     initDistPicker() {
       let self = this;
       let distData = addressData;
@@ -312,6 +315,7 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    this.isMobile = isMobile()
     console.log("-pppp---", this);
     this.initDistPicker();
     this.initVantArea();
@@ -325,54 +329,3 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang="less">
-//@import url(); 引入公共css类
-.code-row {
-  display: flex;
-  justify-content: space-between;
-  .el-input {
-    flex: 1;
-    .el-input__inner {
-      height: 40px !important;
-      line-height: 40px !important;
-    }
-  }
-  .code-btn {
-    margin-left: 16px;
-  }
-}
-.el-cascader {
-  width: 100%;
-}
-.el-cascader-panel {
-  height: 200px;
-}
-.m_address {
-  .van-icon-arrow {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .el-cascader-panel {
-    height: 200px;
-    width: 100vw !important;
-    overflow: auto !important;
-  }
-}
-// .el-popper {
-//   width: 100vw !important;
-//   overflow: auto !important;
-// }
-</style>
-<style>
-.van-popup--bottom.van-popup--round {
-  border-radius: 8px 8px 0 0;
-}
-.van-cascader__option--selected {
-  color: #ff724f;
-}
-.van-cascader .van-tabs__line {
-  background-color: #ff724f;
-}
-</style>

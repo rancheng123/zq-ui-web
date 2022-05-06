@@ -1,32 +1,35 @@
 <!-- DJH time: -->
 <template>
-  <div class="flex-auto">
-    <zq-form-item v-bind="$attrs">
-      <template>
-        <zq-select
-            v-if="!isMobile"
-            :style="$attrs.formData.advance_attribute.input.style"
-            v-model="selectedLabel"
-            :placeholder="$attrs.currentItem.placeholder"
-            class="input-with-select"
-            :options="options"
-            @change="handlerChange"
-        >
-        </zq-select>
+  <div class="zq-select-2432414243">
+    <div class="flex-auto">
+      <zq-form-item v-bind="$attrs">
+        <template>
+          <zq-select
+              v-if="!isMobile"
+              :style="$attrs.formData.advance_attribute.input.style"
+              v-model="selectedLabel"
+              :placeholder="$attrs.currentItem.placeholder"
+              class="input-with-select"
+              :options="options"
+              @change="handlerChange"
+          >
+          </zq-select>
 
-        <moibleSelect
-            v-else
-            :label="selectedLabel"
-            :value="$attrs.currentItem.default_value"
-            :style1="$attrs.formData.advance_attribute.input.style"
-            :placeholder="$attrs.currentItem.placeholder"
-            :data="options"
-            @confirm="onConfirm"
-            @change="handlerChange"
-        ></moibleSelect>
-      </template>
-    </zq-form-item>
+          <moibleSelect
+              v-else
+              :label="selectedLabel"
+              :value="$attrs.currentItem.default_value"
+              :style1="$attrs.formData.advance_attribute.input.style"
+              :placeholder="$attrs.currentItem.placeholder"
+              :data="options"
+              @confirm="onConfirm"
+              @change="handlerChange"
+          ></moibleSelect>
+        </template>
+      </zq-form-item>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -53,6 +56,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      isMobile: false,
       defaultIndex: 0,
       showPicker: false,
       selectedValue: -1,
@@ -63,7 +67,6 @@ export default {
     options() {
       return this.$attrs.currentItem.options.filter((item) => item.isShow);
     },
-    isMobile,
     selectedLabel: {
       get() {
         let val = "";
@@ -97,6 +100,7 @@ export default {
     },
   },
   mounted() {
+    this.isMobile = isMobile()
     componentStore.set("zqSelect", this);
   },
   beforeDestroy() {
@@ -121,25 +125,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.code-row {
-  display: flex;
-  justify-content: space-between;
-  .el-input {
-    flex: 1;
-    .el-input__inner {
-      height: 40px !important;
-      line-height: 40px !important;
-    }
-  }
-  .code-btn {
-    margin-left: 16px;
-  }
-}
- .van-picker {
-  .van-picker-column__item {
-    justify-content: left;
-  }
-}
-</style>

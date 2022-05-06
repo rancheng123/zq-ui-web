@@ -1,77 +1,80 @@
 <!-- DJH time: -->
 <template>
-  <el-form-item
-    v-if="$attrs.currentItem.isHidden == 1"
-    class="form-item-label-warp"
-    :prop="cusProps ? cusProps : $attrs.currentItem.field_name"
-    :description="$attrs.currentItem.helpText"
-    :helpTextType="$attrs.currentItem.helpTextType"
-    :rules="rules"
-  >
+  <div class="zq-form-item-12212342343">
+    <el-form-item
+        v-if="$attrs.currentItem.isHidden == 1"
+        class="form-item-label-warp"
+        :prop="cusProps ? cusProps : $attrs.currentItem.field_name"
+        :description="$attrs.currentItem.helpText"
+        :helpTextType="$attrs.currentItem.helpTextType"
+        :rules="rules"
+    >
     <span
-      slot="label"
-      class="label flex-row"
-      v-if="label && $attrs.currentItem.helpTextType == '1'"
+        slot="label"
+        class="label flex-row"
+        v-if="label && $attrs.currentItem.helpTextType == '1'"
     >
       <span class="label flex-row">
         <span
-          class="label-text"
-          :style="$attrs.formData.advance_attribute.submitBtnText.style"
+            class="label-text"
+            :style="$attrs.formData.advance_attribute.submitBtnText.style"
         >
           <span
-            v-if="$attrs.currentItem.is_required == 2"
-            :style="{
+              v-if="$attrs.currentItem.is_required == 2"
+              :style="{
               color: $attrs.formData.basic_attribute.requiredAsteriskColor,
             }"
-            >*</span
+          >*</span
           >
           {{ label }}
         </span>
         <span
-          class="description"
-          :style="$attrs.formData.advance_attribute.helpText.style"
+            class="description"
+            :style="$attrs.formData.advance_attribute.helpText.style"
         >
           {{ $attrs.currentItem.helpText }}</span
         ></span
       >
     </span>
-    <span
-      slot="label"
-      class="label flex-col"
-      v-if="label && $attrs.currentItem.helpTextType == '2'"
-    >
+      <span
+          slot="label"
+          class="label flex-col"
+          v-if="label && $attrs.currentItem.helpTextType == '2'"
+      >
       <span class="label help-text__lable">
         <span
-          class="label-text"
-          :style="$attrs.formData.advance_attribute.submitBtnText.style"
+            class="label-text"
+            :style="$attrs.formData.advance_attribute.submitBtnText.style"
         >
           <span
-            v-if="$attrs.currentItem.is_required == 2"
-            :style="{
+              v-if="$attrs.currentItem.is_required == 2"
+              :style="{
               color: $attrs.formData.basic_attribute.requiredAsteriskColor,
             }"
-            >*</span
+          >*</span
           >
           {{ label }}
         </span></span
       >
       <span
-        class="description"
-        :style="$attrs.formData.advance_attribute.helpText.style"
+          class="description"
+          :style="$attrs.formData.advance_attribute.helpText.style"
       >
         {{ $attrs.currentItem.helpText }}</span
       >
     </span>
-    <slot></slot>
-    <span
-      slot="error"
-      slot-scope="scope"
-      class="el-form-item__error"
-      :style="$attrs.formData.advance_attribute.errorText.style"
-    >
+      <slot></slot>
+      <span
+          slot="error"
+          slot-scope="scope"
+          class="el-form-item__error"
+          :style="$attrs.formData.advance_attribute.errorText.style"
+      >
       {{ scope.error }}
     </span>
-  </el-form-item>
+    </el-form-item>
+  </div>
+
 </template>
 
 <script>
@@ -202,42 +205,3 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-//@import url(); 引入公共css类
-.flex-row {
-  display: flex;
-  align-items: center;
-  .description {
-    padding-left: 16px;
-  }
-}
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-.help-text__lable {
-  display: inline-flex; // 修复父级设置 flex-direction: column; 后的下间距bug
-}
-
-.form-item-label-warp {
-  .el-input,
-  .el-textarea,
-  .el-select {
-    width: 100% !important;
-  }
-  .label-text {
-    display: inline-block;
-    flex: none;
-  }
-  .description {
-    display: inline-block;
-  }
-}
-.input-with-select {
-  width: 100% !important;
-}
-.el-form--label-top .el-form-item__label {
-  padding: 0;
-  line-height: 0px;
-}
-</style>
