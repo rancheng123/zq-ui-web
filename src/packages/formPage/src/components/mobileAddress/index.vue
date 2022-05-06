@@ -13,13 +13,13 @@
       <i class="el-input__icon el-icon-arrow-down icon-down"></i>
     </div>
     <van-popup
-        class="addressPopup"
-        v-model="show"
-        round
-        closeable
-        lock-scroll
-        safe-area-inset-bottom
-        position="bottom"
+      class="addressPopup"
+      v-model="show"
+      round
+      closeable
+      lock-scroll
+      safe-area-inset-bottom
+      position="bottom"
     >
       <div class="panelWrap" :style="panelWrapStyle">
         <div class="title">请选择所在地区</div>
@@ -27,8 +27,8 @@
           <div class="addressText">
             <span class="provinceName name" @click="operationType = 'province'">
               <span
-                  v-if="province"
-                  :class="{
+                v-if="province"
+                :class="{
                   orange: operationType === 'province',
                 }"
               >
@@ -38,13 +38,13 @@
             </span>
 
             <span
-                v-if="province"
-                class="cityName name"
-                @click="operationType = 'city'"
+              v-if="province"
+              class="cityName name"
+              @click="operationType = 'city'"
             >
               <span
-                  v-if="city"
-                  :class="{
+                v-if="city"
+                :class="{
                   orange: operationType === 'city',
                 }"
               >
@@ -53,13 +53,13 @@
               <span v-else class="orange">请选择 </span>
             </span>
             <span
-                v-if="province && city && addressJson[city]"
-                class="countyName name"
-                @click="operationType = 'area'"
+              v-if="province && city && addressJson[city]"
+              class="countyName name"
+              @click="operationType = 'area'"
             >
               <span
-                  v-if="area"
-                  :class="{
+                v-if="area"
+                :class="{
                   orange: operationType === 'area',
                 }"
               >
@@ -81,14 +81,20 @@
                   "
                 ></span>-->
                 <dd
-                    :class="{
+                  :class="{
                     selected: isSelected(item),
                   }"
-                    :key="index"
-                    v-for="(item, index) in dataBox.data"
-                    @click="selectItem(item)"
+                  :key="index"
+                  v-for="(item, index) in dataBox.data"
+                  @click="selectItem(item)"
                 >
-
+<!--                  <img
+                    class="rightIcon"
+                    :src="
+                      require('./img/right.png')
+                    "
+                    alt=""
+                  />-->
                   {{ item.chinese }}
                 </dd>
               </dl>
@@ -97,7 +103,7 @@
 
           <div class="lettersBar">
             <div
-                :class="{
+              :class="{
                 circleLetter: true,
                 show: circleLetterShow,
               }"
@@ -106,10 +112,10 @@
             </div>
             <div class="lettersBarlistWrap">
               <div
-                  class="letter"
-                  :key="index"
-                  v-for="(dataBox, index) in dataList"
-                  @click="clickLetter(dataBox)"
+                class="letter"
+                :key="index"
+                v-for="(dataBox, index) in dataList"
+                @click="clickLetter(dataBox)"
               >
                 {{ dataBox.letter }}
               </div>
@@ -121,7 +127,6 @@
   </div>
 </template>
 <script>
-import addressJson from "../../data/address.json";
 import componentStore from "../../utils/componentStore.js";
 import { IsIphonex } from "../../utils/index.js";
 export default {
@@ -129,7 +134,7 @@ export default {
   data() {
     return {
       show: false,
-      addressJson: this.extraData(addressJson),
+      addressJson: this.extraData(window.addressJson_format1),
       address: "",
       area: "",
       city: "",

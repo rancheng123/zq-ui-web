@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getToken, removeToken } from "./auth.js";
-import { Message, MessageBox } from "element-ui";
 const service = axios.create({
   timeout: 6000000,
 });
@@ -30,10 +29,7 @@ service.interceptors.response.use(
       window.location.href = "/404";
       return Promise.reject(new Error(res.data.msg || "Error"));
     } else if (res.data.code === 3) {
-      Message({
-        message: "无权限，请联系系统管理员修改权限设置",
-        type: "error",
-      });
+        alert("无权限，请联系系统管理员修改权限设置")
       return Promise.reject(new Error(res.data.msg || "Error"));
     } else if (res.data.code === 12030) {
       let timesRun = 10;
@@ -63,19 +59,9 @@ service.interceptors.response.use(
           document.querySelector(".logout-btn").click();
         }
       }, 1000);
-      // 账户被管理员禁用的提示
-      MessageBox.alert(html, "", {
-        confirmButtonText: "退出登录",
-        showCancelButton: false,
-        showClose: false,
-        customClass: "disabled-dialog",
-        confirmButtonClass: "logout-btn",
-        dangerouslyUseHTMLString: true,
-      }).then(() => {
         clearInterval(interval);
         removeToken();
         window.location.href = "/login";
-      });
       return Promise.reject(new Error(res.msg || "Error"));
     } else if (res.data.code === 12033) {
       // 退出到scrm 登录页
@@ -88,11 +74,6 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log("err" + error);
-    // Message({
-    //   message: error.message,
-    //   type: "error",
-    //   duration: 5 * 1000,
-    // });
     return Promise.reject(error);
   }
 );

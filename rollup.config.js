@@ -5,6 +5,7 @@ import scss from "rollup-plugin-scss";
 import less from 'rollup-plugin-less';
 import babel from "rollup-plugin-babel";
 import json from "rollup-plugin-json";
+import image from 'rollup-plugin-image';
 
 import typescript from "rollup-plugin-typescript2";
 import commonjs from "rollup-plugin-commonjs";
@@ -73,7 +74,7 @@ module.exports = {
       // generate a named export for every property of the JSON object
       namedExports: true, // Default: true
     }),
-
+    image(),
     sourcemaps(),
   ],
 };
