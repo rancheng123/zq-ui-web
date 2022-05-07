@@ -1,6 +1,9 @@
 <template>
-  <popup :type="'formPage'"
-  ></popup>
+  <div class="formPageBox">
+    <popup :type="'formPage'"
+    ></popup>
+  </div>
+
 </template>
 <script>
 import popup from "./popup.vue";
@@ -28,6 +31,18 @@ export default {
         return ''
       }
     },
+    form_id: {
+      type: Number,
+      default(){
+        return -1
+      }
+    },
+    org_id: {
+      type: String,
+      default(){
+        return ''
+      }
+    }
 
   },
 };

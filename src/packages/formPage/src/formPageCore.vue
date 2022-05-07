@@ -281,8 +281,8 @@ export default {
     async getDetail() {
       let self = this;
       let params = {
-        form_id: this.form_id,
-        org_id: this.org_id,
+        form_id: this.closest2('ZqFormPage').form_id,
+        org_id: this.closest2('ZqFormPage').org_id,
       };
 
       request({
