@@ -1,6 +1,6 @@
 {
   "name": "zq-ui-web-new",
-  "version":"0.0.17",
+  "version": "0.0.17",
   "description": "a lib for Zq",
   "private": false,
   "main": "lib/index.js",
@@ -36,7 +36,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-svgo": "^1.1.0",
     "rollup-plugin-vue2": "^0.8.1",
-    "vue": "^2.6.11",
+    "vue": "2.6.11",
     "vue-property-decorator": "^9.1.2",
     "vue-resizable": "1.1.3",
     "vue-router": "^3.2.0"
@@ -77,6 +77,6 @@
     "sass-loader": "^8.0.2",
     "typescript": "2.7.1",
     "vue-loader": "^15.9.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.11"
   }
 }
