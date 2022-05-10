@@ -1,14 +1,10 @@
 // 打包vue2  单文件组件（Single-File Components ）
 import vue from "rollup-plugin-vue2";
 
-import scss from "rollup-plugin-scss";
 import less from 'rollup-plugin-less';
 import babel from "rollup-plugin-babel";
 import json from "rollup-plugin-json";
 import image from 'rollup-plugin-image';
-
-import typescript from "rollup-plugin-typescript2";
-import commonjs from "rollup-plugin-commonjs";
 
 import svg from "rollup-plugin-svg";
 
@@ -32,6 +28,15 @@ module.exports = {
     format: "umd",
     name: "aaa",
     sourceMap: true,
+
+
+
+    //标记外部依赖, 指定浏览器全局变量名称(与外部模块相对应的)
+    globals: {
+      "vue": "Vue",
+      "axios": "axios",
+      "qiniu-js": "qiniu"
+    }
   },
   plugins: [
     svg(/* options */),
@@ -48,7 +53,6 @@ module.exports = {
       ],
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
     }),
-    //scss(),
     less({
       output: './lib/index.css'
     }),

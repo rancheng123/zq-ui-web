@@ -180,7 +180,7 @@ export default {
   },
   methods: {
     onMounted() {
-      //this.loading = false;
+
     },
     onSubmitSuccess(val) {
       this.submitSuccess = val;
@@ -306,7 +306,6 @@ export default {
     rePopupForm() {
       this.submitSuccess = false;
       this.popupFormStatus = false;
-      //this.loading = true;
       this.enlargeIframes();
       // if (this.isEnlarge()) {
       //   //this.shrinkIframes();
