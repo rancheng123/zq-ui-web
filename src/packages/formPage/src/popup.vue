@@ -220,6 +220,13 @@ export default {
     },
     getAllAncestorIframes() {
       let res = [];
+
+
+      res.push(
+          document.querySelector('.formPageBox')
+      )
+      this.createStyle(window);
+
       let currentWin = window;
       let goOnWhile = true;
       while (goOnWhile) {

@@ -189,20 +189,20 @@ export default {
   components: { previewItem },
   mounted() {
     this.isMobile = isMobile()
-    this.cta_background = this.$route.query.ctaBackground || "";
-    this.unique_id = this.$route.query.unique_id || "";
-    this.form_id = this.$route.query.form_id || "";
-    this.org_id = this.$route.query.org_id || "";
-    this.ppid = this.$route.query.ppid || ""; //父页面id
-    this.isStatistics = this.$route.query.isStatistics == 2 ? false : true;
-    this.downloadUrl = this.$route.query.downloadUrl || "";
-    this.module = this.$route.query.module || "";
-    this.pType = this.$route.query.pType || "";
-    this.pId = this.$route.query.pId || "";
-    this.gType = this.$route.query.gType || "";
-    this.gId = this.$route.query.gId || "";
-    this.zType = this.$route.query.zType || "";
-    this.zId = this.$route.query.zId || "";
+    this.cta_background = this.closest2('ZqFormPage').params.ctaBackground || "";
+    this.unique_id = this.closest2('ZqFormPage').params.unique_id || "";
+    this.form_id = this.closest2('ZqFormPage').params.form_id || "";
+    this.org_id = this.closest2('ZqFormPage').params.org_id || "";
+    this.ppid = this.closest2('ZqFormPage').params.ppid || ""; //父页面id
+    this.isStatistics = this.closest2('ZqFormPage').params.isStatistics == 2 ? false : true;
+    this.downloadUrl = this.closest2('ZqFormPage').params.downloadUrl || "";
+    this.module = this.closest2('ZqFormPage').params.module || "";
+    this.pType = this.closest2('ZqFormPage').params.pType || "";
+    this.pId = this.closest2('ZqFormPage').params.pId || "";
+    this.gType = this.closest2('ZqFormPage').params.gType || "";
+    this.gId = this.closest2('ZqFormPage').params.gId || "";
+    this.zType = this.closest2('ZqFormPage').params.zType || "";
+    this.zId = this.closest2('ZqFormPage').params.zId || "";
     this.getDetail();
     this.$nextTick(() => {
       if(document.getElementById("app")){
@@ -281,8 +281,8 @@ export default {
     async getDetail() {
       let self = this;
       let params = {
-        form_id: this.closest2('ZqFormPage').form_id,
-        org_id: this.closest2('ZqFormPage').org_id,
+        form_id: this.form_id,
+        org_id: this.org_id,
       };
 
       request({
@@ -481,6 +481,7 @@ export default {
             this.source[this.pType] = this.pId;
           }
 
+          debugger
           const params = {
             anonymous_id: this.myCollect.$getAnonymousId(),
             unique_id: this.unique_id,
@@ -501,7 +502,7 @@ export default {
           }
 
           request({
-            url: this.closest2('ZqFormPage').apiPrefix +  "/cdp/form/commit-list",
+            url: this.closest2('ZqFormPage').apiPrefix +  "cdp/form/commit",
             method: "post",
             data: params,
           }).then(({ code, data, msg }) => {

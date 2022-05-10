@@ -31,6 +31,12 @@ export default {
         return ''
       }
     },
+    params: {
+      type: Object,
+      default(){
+        return {}
+      }
+    },
     form_id: {
       type: Number,
       default(){
