@@ -251,7 +251,7 @@ export default {
       style.setAttribute("type", "text/css");
       style.setAttribute("class", "enlargeStyle");
       //不能换行，否则失效
-      style.innerText = `.enlargeIframe{position: fixed;width: 100%;height: 100%;top:0px;left:0px;z-index:10000}.enlargeIframe.notFull{height: 80%;top:20%;}`;
+      style.innerText = `.enlargeIframe{position: fixed;width: 100%;height: 100%;top:0px;left:0px;z-index:1000}.enlargeIframe.notFull{height: 80%;top:20%;}`;
       window.document.head.appendChild(style);
     },
     isEnlarge() {
