@@ -1,7 +1,7 @@
 <template>
   <div class="formPageBox">
     <popup
-        v-if="formData"
+        v-if="formData && dependScript"
         :type="'formPage'"
     ></popup>
   </div>
@@ -14,7 +14,8 @@ export default {
   name: "ZqFormPage",
   data(){
     return {
-      formData: null
+      formData: null,
+      dependScript: false
     }
   },
   components: {
@@ -25,6 +26,12 @@ export default {
       type: String,
       default(){
         return '/api'
+      }
+    },
+    VUE_APP_UI: {
+      type: String,
+      default(){
+        return ''
       }
     },
     domain: {
@@ -77,6 +84,13 @@ export default {
   },
   mounted(){
     this.getDetail()
+    var script = document.createElement('script')
+    script.setAttribute('src',this.VUE_APP_UI + 'lib/zq-public/utils/msg.js')
+    script.setAttribute('type','text/javascript')
+    document.body.appendChild(script)
+    script.onload=()=>{
+      this.dependScript = true
+    }
   }
 };
 </script>

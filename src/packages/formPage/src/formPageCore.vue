@@ -142,6 +142,7 @@ import componentStore from "./utils/componentStore.js";
 import { isMobile } from "./utils/index.js";
 import request from "./utils/request";
 
+
 export default {
   data() {
     return {
@@ -350,6 +351,26 @@ export default {
               source_title: "", // 可传 页面来源
               parent_page_id: this.ppid,
             };
+
+
+
+
+
+
+            msgObj.windowRequest({
+              whichWindow: window.top,
+              type: 'getLocation',
+              callback: (res)=>{
+                debugger
+              }
+            })
+
+
+
+
+
+
+
 
             //单页面表单
             if (self.formData.form_type === 1) {
