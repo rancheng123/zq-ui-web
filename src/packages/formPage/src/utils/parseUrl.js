@@ -31,7 +31,7 @@ export const getUtmJson = (traceLocation, actionType) => {
     }
     // 分享链接页面    // http://www.aaa?a=1&utm_a=1
     else {
-      url = window.top.location.href;
+      url = traceLocation.href;
     }
   }
   // 其他页面   // http://www.aaa?a=1
