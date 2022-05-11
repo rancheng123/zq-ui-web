@@ -212,10 +212,13 @@ export default {
       }
 
       if (this.isMobile) {
+
+        //失效了  start
         //删除遮罩
         var layerDom =
           window.top.document.body.querySelector("#layerDomForForm");
         window.top.document.body.removeChild(layerDom);
+        //失效了  end
       }
     },
     getAllAncestorIframes() {
@@ -230,10 +233,12 @@ export default {
       let currentWin = window;
       let goOnWhile = true;
       while (goOnWhile) {
+        //失效了 start
         if (currentWin.frameElement) {
           res.push(currentWin.frameElement);
           this.createStyle(currentWin.parent);
         }
+        //失效了 end
 
         if (currentWin.parent) {
           currentWin = currentWin.parent;
@@ -269,11 +274,10 @@ export default {
       let iframes = this.getAllAncestorIframes();
 
       if (
-        window.parent &&
-        window.parent.document.querySelector(".cta-preview")
+        document.querySelector(".cta-preview")
       ) {
         this.ctaTitleAndDesc =
-          window.parent.document.querySelector(".cta-preview").innerHTML;
+          document.querySelector(".cta-preview").innerHTML;
       }
 
       for (let index in iframes) {
@@ -296,7 +300,11 @@ export default {
 
         //设置遮罩
         var layerDom = document.createElement("div");
+
+
+        //失效了  start
         window.top.document.body.appendChild(layerDom);
+        //失效了  end
 
         layerDom.setAttribute("id", "layerDomForForm");
         layerDom.style =

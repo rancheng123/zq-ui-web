@@ -242,8 +242,26 @@ export default {
       var res = this.closest2('ZqFormPage').domain
       return res
     },
+    emitMsg(msgObj){
+      this.closest2('ZqFormPage').$emit('message',msgObj)
+    },
+    parentJump(){
+      //此 parent不要动
+      window.parent.location.href =
+          this.formData.http_jump_link;
+    },
+    parentEmitMsg(msgObj){
+      //此 parent不要动
+      window.parent.postMessage(
+          msgObj,
+          "*"
+      );
+
+    },
     sendMessage() {
-      window.parent.postMessage({ type: "cdp" }, "*");
+      this.emitMsg({
+        type: "cdp"
+      })
     },
     checked(key, value) {
       if (this.formData.is_auto_completion == 2) {
@@ -462,7 +480,9 @@ export default {
           if (!this.isStatistics) {
             if (this.downloadUrl && this.downloadUrl != "undefiend") {
               if (this.isWeiXin) {
-                window.parent.postMessage({ type: "cdpDownload" }, "*");
+
+                this.emitMsg({ type: "cdpDownload" })
+
               } else {
                 self.download(this.downloadUrl);
               }
@@ -508,16 +528,13 @@ export default {
           }).then(({ code, data, msg }) => {
             if (code == 0) {
               //获取customer_id，用于c端埋点 -qrj
-              window.parent.parent.postMessage(
-                { customer_id: data.customer_id },
-                "*"
-              );
-              // window.parent.postMessage({ customer_id: data }, '*');
+              this.parentEmitMsg({ customer_id: data.customer_id })
+
               localStorage.setItem("customer_id", data.customer_id);
               // 先下载 cms 需求
               if (this.downloadUrl && this.downloadUrl != "undefiend") {
                 if (this.isWeiXin) {
-                  window.parent.postMessage({ type: "cdpDownload" }, "*");
+                  this.emitMsg({ type: "cdpDownload" })
                 } else {
                   self.download(this.downloadUrl);
                 }
@@ -532,8 +549,7 @@ export default {
                   if (this.isMobile) {
                     // 因safari的安全机制将“异步”window.open阻挡了所以采用localtion
                     // 被两级iframe嵌套了
-                    window.parent.parent.location.href =
-                      this.formData.http_jump_link;
+                    this.parentJump()
                   } else {
                     this.fnPageJump();
                   }
