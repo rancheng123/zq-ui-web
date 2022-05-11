@@ -40,6 +40,12 @@ export default {
         return ''
       }
     },
+    topLocation: {
+      type: Object,
+      default(){
+        return {}
+      }
+    },
     params: {
       type: Object,
       default(){

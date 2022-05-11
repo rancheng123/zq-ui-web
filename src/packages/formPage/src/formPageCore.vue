@@ -142,7 +142,6 @@ import componentStore from "./utils/componentStore.js";
 import { isMobile } from "./utils/index.js";
 import request from "./utils/request";
 
-
 export default {
   data() {
     return {
@@ -356,27 +355,11 @@ export default {
 
 
 
-
-            msgObj.windowRequest({
-              whichWindow: window.top,
-              type: 'getLocation',
-              callback: (res)=>{
-                debugger
-              }
-            })
-
-
-
-
-
-
-
-
             //单页面表单
             if (self.formData.form_type === 1) {
               params = {
                 ...params,
-                ...getUtmJson(window.top.location, "link"),
+                ...getUtmJson(this.closest2('ZqFormPage').topLocation, "link"),
               };
 
               console.log(params, "--aaaa");
@@ -539,7 +522,7 @@ export default {
 
           //下载统计
           if (this.downloadUrl && this.downloadUrl != "undefiend") {
-            params.source.utm = getUtmJson(window.top.location, "download");
+            params.source.utm = getUtmJson(this.closest2('ZqFormPage').topLocation, "download");
           }
 
           request({
