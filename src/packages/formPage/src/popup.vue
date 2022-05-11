@@ -205,7 +205,7 @@ export default {
         if (type === "reset") {
           iframes[index].classList.remove("enlargeIframe");
         } else {
-          if (iframes[index] !== window.frameElement) {
+          if (iframes[index].tagName === 'IFRAME') {
             iframes[index].classList.remove("enlargeIframe");
           }
         }
@@ -271,6 +271,7 @@ export default {
       }
     },
     enlargeIframes() {
+      debugger
       let iframes = this.getAllAncestorIframes();
 
       if (
@@ -354,6 +355,7 @@ export default {
 
 
     document.documentElement.classList.add("borderRadius");
+    console.log(this, '-----popup-----')
     componentStore.set("popup", this);
   },
   beforeDestroy() {

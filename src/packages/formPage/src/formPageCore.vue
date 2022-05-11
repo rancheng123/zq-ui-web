@@ -505,7 +505,7 @@ export default {
             this.source[this.pType] = this.pId;
           }
 
-          debugger
+
           const params = {
             anonymous_id: this.myCollect.$getAnonymousId(),
             unique_id: this.unique_id,
@@ -526,7 +526,7 @@ export default {
           }
 
           request({
-            url: this.closest2('ZqFormPage').apiPrefix +  "cdp/form/commit",
+            url: this.closest2('ZqFormPage').apiPrefix +  "cdp/form-app/commit",
             method: "post",
             data: params,
           }).then(({ code, data, msg }) => {
