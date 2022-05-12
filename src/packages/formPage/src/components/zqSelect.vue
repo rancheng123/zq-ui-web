@@ -18,7 +18,7 @@
           <moibleSelect
               v-else
               :label="selectedLabel"
-              :value="$attrs.currentItem.default_value"
+              :value="selectedLabel"
               :style1="$attrs.formData.advance_attribute.input.style"
               :placeholder="$attrs.currentItem.placeholder"
               :data="options"
@@ -71,7 +71,7 @@ export default {
       get() {
         let val = "";
         this.$attrs.currentItem.options.forEach((item, index) => {
-          if (item.value === this.$attrs.currentItem.default_value) {
+          if (item.value === this.value[this.$attrs.currentItem.field_name]) {
             val = item.label;
             this.defaultIndex = index;
           }
