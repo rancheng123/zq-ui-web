@@ -194,7 +194,7 @@ export default {
     this.province = this.initData.province;
     this.city = this.initData.city;
     this.area = this.initData.area;
-    debugger
+
     window.addEventListener("resize", this.computeBoxHeight);
   },
   beforeDestroy() {

@@ -42,7 +42,6 @@
 
             <!--    :value="dateFormat('HH:MM', timeValue / 1000)"        -->
 
-            {{ dateFormat("HH:MM", timeValue / 1000) }}
             <van-field
                 class="ml20"
                 readonly
@@ -178,7 +177,7 @@ export default {
       this.showDatePicker = false;
     },
     timeConfirm(time) {
-      let date = this.dateFormat("YYYY-mm-dd", this.dateValue / 1000);
+      let date = this.dateFormat('YYYY/mm/dd', this.dateValue / 1000);
       this.timeValue = new Date(date + " " + time).getTime();
       this.dateTimeChange();
       this.showTimePicker = false;
