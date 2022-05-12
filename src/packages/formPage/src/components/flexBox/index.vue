@@ -3,7 +3,7 @@
     <div class="flexBoxHead" ref="flexBoxHead">
       <slot name="head"></slot>
     </div>
-    <div class="flexBoxBody" :style="flexBoxBodyStyle">
+    <div class="flexBoxBody transparentScrollBar" :style="flexBoxBodyStyle">
       <slot name="body"></slot>
     </div>
   </div>
