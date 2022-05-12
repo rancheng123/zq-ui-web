@@ -1,4 +1,4 @@
-//组件回显待验证，  地址
+//组件回显待验证，  地址  图片
 
 
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
@@ -12,10 +12,9 @@ D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Ske
 
 
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqImage.vue
-
-
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqRadio.vue
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqSelect.vue
 
 

@@ -47,7 +47,9 @@ export default {
     },
     selectedLabel: {
       get() {
-        return this.$attrs.currentItem.default_value;
+        //return this.$attrs.currentItem.default_value;
+        return this.value[this.$attrs.currentItem.field_name];
+
       },
       set(value) {
         this.$set(this.$attrs.currentItem, "default_value", value);
