@@ -4,18 +4,22 @@
     <div class="flex-auto">
       <zq-form-item v-bind="$attrs">
         <template v-if="!isMobile">
-          <el-cascader
-              :style="$attrs.formData.advance_attribute.input.style"
-              :placeholder="$attrs.currentItem.provincePlaceholder"
-              :options="options"
-              v-model.trim="addressDefaultValue"
-              @change="handleChange"
-              clearable
-          ></el-cascader>
+          <div>
+            <el-cascader
+                :style="$attrs.formData.advance_attribute.input.style"
+                :placeholder="$attrs.currentItem.provincePlaceholder"
+                :options="options"
+                v-model="addressDefaultValue"
+                @change="handleChange"
+                clearable
+            ></el-cascader>
+          </div>
+
         </template>
         <template v-else>
-          <div>
+          <div class="flex-row-jc">
             <mobileAdress
+                ref="mobileAdress"
                 :flexRange="$attrs.formData.form_type == 2 ? 0 : 188"
                 :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
                 :style="$attrs.formData.advance_attribute.input.style"
@@ -110,23 +114,59 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
+    initData() {
+      return {
+        address: "",
+        area: this.addressDefaultValue[2] || '',
+        city: this.addressDefaultValue[1] || '',
+        province: this.addressDefaultValue[0] || '',
+      };
+
+      //测试 start
+      // return {
+      //   address: "",
+      //   area: "101824",
+      //   city: "100201",
+      //   province: "10169",
+      // };
+
+      //测试 end
+    },
     iconClearShow() {
       return !!this.vant_addressDefaultValue;
     },
   },
   //监控data中的数据变化
   watch: {
+    initData(){
+      if(this.$refs.mobileAdress){
+        this.$refs.mobileAdress.province = this.initData.province
+        this.$refs.mobileAdress.city = this.initData.city
+        this.$refs.mobileAdress.area = this.initData.area
+      }
+
+    },
     value() {
       if (this.value[this.$attrs.currentItem.field_name].province) {
-        this.addressDefaultValue = [
-          this.value[this.$attrs.currentItem.field_name].province,
-          this.value[this.$attrs.currentItem.field_name].city,
-          this.value[this.$attrs.currentItem.field_name].area,
-        ];
+
+        //处理脏数据
+        if(this.value[this.$attrs.currentItem.field_name].city === this.value[this.$attrs.currentItem.field_name].area ){
+          this.addressDefaultValue = [
+            this.value[this.$attrs.currentItem.field_name].province,
+            this.value[this.$attrs.currentItem.field_name].city,
+          ];
+        }else{
+          this.addressDefaultValue = [
+            this.value[this.$attrs.currentItem.field_name].province,
+            this.value[this.$attrs.currentItem.field_name].city,
+            this.value[this.$attrs.currentItem.field_name].area,
+          ];
+        }
+
       }
       if (this.value[this.$attrs.currentItem.field_name].address) {
         this.addressInfo =
-          this.value[this.$attrs.currentItem.field_name].address;
+            this.value[this.$attrs.currentItem.field_name].address;
       }
     },
   },

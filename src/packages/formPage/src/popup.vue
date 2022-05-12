@@ -271,7 +271,7 @@ export default {
       }
     },
     enlargeIframes() {
-      debugger
+
       let iframes = this.getAllAncestorIframes();
 
       if (

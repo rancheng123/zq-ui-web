@@ -69,7 +69,7 @@
             </span>
           </div>
           <div class="dlWrap">
-            <div ref="scrollWrap" class="scrollWrap">
+            <div ref="scrollWrap" class="scrollWrap transparentScrollBar">
               <dl :key="dataIndex" v-for="(dataBox, dataIndex) in dataList">
                 <dt>{{ dataBox.letter }}</dt>
                 <!--                <span
@@ -110,7 +110,7 @@
             >
               {{ clickedLetter }}
             </div>
-            <div class="lettersBarlistWrap">
+            <div class="lettersBarlistWrap transparentScrollBar">
               <div
                 class="letter"
                 :key="index"
@@ -149,6 +149,17 @@ export default {
     };
   },
   props: {
+    initData: {
+      type: Object,
+      default() {
+        return {
+          address: "",
+          area: "",
+          city: "",
+          province: "",
+        };
+      },
+    },
     flexRange: {
       type: Number,
       default() {
@@ -180,6 +191,10 @@ export default {
       2. 字母较多，  margin-bottm 4px 显示
 
     */
+    this.province = this.initData.province;
+    this.city = this.initData.city;
+    this.area = this.initData.area;
+    debugger
     window.addEventListener("resize", this.computeBoxHeight);
   },
   beforeDestroy() {

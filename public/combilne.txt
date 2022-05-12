@@ -1,24 +1,19 @@
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
-
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqEmail.vue
-
-
-
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\index.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.vue
-D:\workSpace\cdp-app\src\views\data-configuration\formView\index.vue
-D:\workSpace\cdp-app\vue.config.js
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewPageCore.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\components\previewPage.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.less
 
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.less
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqAddress.vue
+D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.vue
+D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.less
+
+
+
+
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageMix.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Skeleton.vue
 
@@ -29,7 +24,7 @@ D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\pre
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\components\createForm.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\components\exteriorFrom.vue
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.vue
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqDateTimePicker.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobile\components\flexBox\index.vue
 
