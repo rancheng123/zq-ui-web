@@ -43,7 +43,9 @@ export default {
   computed: {
     checkeds: {
       get() {
-        return this.$attrs.currentItem.default_value || []; // 避免 Error in render: "TypeError: Cannot read properties of undefined (reading 'length')"
+        //return this.$attrs.currentItem.default_value || []; // 避免 Error in render: "TypeError: Cannot read properties of undefined (reading 'length')"
+        return this.value[this.$attrs.currentItem.field_name] || []
+
       },
       set(value) {
         this.$set(this.$attrs.currentItem, "default_value", value);
