@@ -1,18 +1,13 @@
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
 
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\commonTheme.js
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\phoneNumber.vue
-
-
-
-
-
-
 
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqEmail.vue
+
+
+
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\index.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.vue
 D:\workSpace\cdp-app\src\views\data-configuration\formView\index.vue

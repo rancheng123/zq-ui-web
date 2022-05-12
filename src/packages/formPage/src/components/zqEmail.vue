@@ -14,6 +14,7 @@
           </zq-input>
         </template>
       </zq-form-item>
+      <div style="margin-bottom: 24px"></div>
       <zq-form-item
           v-bind="$attrs"
           :isHiddenLabel="true"
@@ -28,6 +29,7 @@
                 v-model.trim="value[$attrs.currentItem.field_name + 'code']"
             ></zq-input>
             <zq-button
+                :style="btnTheme($attrs.formData)"
                 class="code-btn"
                 @click="sendCode"
                 :disabled="!value[$attrs.currentItem.field_name] || btnDisabled"
@@ -46,6 +48,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
+import { btnTheme } from "./commonTheme";
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "zqEmail",
@@ -116,6 +119,7 @@ export default {
   mounted() {},
   //方法集合
   methods: {
+    btnTheme,
     sendCode() {
       let self = this;
       const params = {
