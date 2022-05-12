@@ -2,16 +2,14 @@
 
 
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.less
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageMix.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Skeleton.vue
 
 
+D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.vue
+D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.less
 
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqSelect.vue
 
 
 

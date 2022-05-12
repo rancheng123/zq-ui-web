@@ -13,6 +13,7 @@
           <div class="transparentOverLay" @click="popupForm"></div>
 
           <Skeleton
+            :key="skeletonKey"
             :type="type"
             :loading="loading"
             @onSubmitSuccess="onSubmitSuccess"
@@ -37,17 +38,15 @@
                 </div>
               </div>
 
-              <div slot="body">
-                <div class="box">
-                  <div class="form-title">
-                    <div v-html="ctaTitleAndDesc"></div>
-                  </div>
 
+              <div slot="body">
+                <div class="box"  :style="'background:' + formData.advance_attribute.page.style.backgroundColor">
                   <Skeleton
-                    :type="type"
-                    :loading="loading"
-                    @onSubmitSuccess="onSubmitSuccess"
-                    @onMounted="onMounted"
+                      :key="skeletonKey"
+                      :type="type"
+                      :loading="loading"
+                      @onSubmitSuccess="onSubmitSuccess"
+                      @onMounted="onMounted"
                   ></Skeleton>
                 </div>
               </div>
@@ -61,15 +60,13 @@
               <zq-icon
                 v-if="isEnlarge()"
                 name="icon-qingchu"
-                class="icon-qingchu"
+                class="icon-qingchu icon-qingchu-pcPopup"
                 @click="dePopupForm"
               ></zq-icon>
-              <div class="fullscreenInnerWrap">
+              <div class="fullscreenInnerWrap transparentScrollBar">
                 <div class="centerBox">
-                  <div class="form-title">
-                    <div v-html="ctaTitleAndDesc"></div>
-                  </div>
                   <Skeleton
+                    :key="skeletonKey"
                     :type="type"
                     :loading="loading"
                     @onSubmitSuccess="onSubmitSuccess"
@@ -87,6 +84,7 @@
       <div v-else>
         <div v-if="isMobile" class="mobileSingle">
           <Skeleton
+            :key="skeletonKey"
             :type="type"
             :loading="loading"
             @onSubmitSuccess="onSubmitSuccess"
@@ -95,6 +93,7 @@
         </div>
         <div v-else class="pcSingle">
           <Skeleton
+            :key="skeletonKey"
             :type="type"
             :loading="loading"
             @onSubmitSuccess="onSubmitSuccess"
@@ -120,9 +119,10 @@ import Skeleton from "./Skeleton.vue";
 import componentStore from "./utils/componentStore.js";
 import { isMobile } from "./utils/index.js";
 export default {
-  name: "formPage",
+  name: "popup",
   data() {
     return {
+      skeletonKey: Date.now(),
       isMobile:false,
       loading: true,
       popupFormStatus: false,
@@ -131,7 +131,6 @@ export default {
       formData: {
         form_type: 1,
       },
-      ctaTitleAndDesc: "",
     };
   },
   components: {
@@ -189,38 +188,11 @@ export default {
       }
     },
     reSubmit() {
-      this.rePopupForm();
-
-      setTimeout(() => {
-        // this.sendMessage2({
-        //   type: "reload",
-        // });
-        window.frameElement && window.frameElement.classList.add("reload");
-        location.reload();
-      }, 1000);
+      this.submitSuccess = false;
+      this.enlargeIframes();
+      this.skeletonKey = Date.now();
     },
-    shrinkIframes(type) {
-      let iframes = this.getAllAncestorIframes();
-      for (let index in iframes) {
-        if (type === "reset") {
-          iframes[index].classList.remove("enlargeIframe");
-        } else {
-          if (iframes[index].tagName === 'IFRAME') {
-            iframes[index].classList.remove("enlargeIframe");
-          }
-        }
-      }
 
-      if (this.isMobile) {
-
-        //失效了  start
-        //删除遮罩
-        var layerDom =
-          window.top.document.body.querySelector("#layerDomForForm");
-        window.top.document.body.removeChild(layerDom);
-        //失效了  end
-      }
-    },
     getAllAncestorIframes() {
       let res = [];
 
@@ -256,7 +228,7 @@ export default {
       style.setAttribute("type", "text/css");
       style.setAttribute("class", "enlargeStyle");
       //不能换行，否则失效
-      style.innerText = `.enlargeIframe{position: fixed;width: 100%;height: 100%;top:0px;left:0px;z-index:1000}.enlargeIframe.notFull{height: 80%;top:20%;}`;
+      style.innerText = `.enlargeIframe{position: fixed !important;width: 100% !important;height: 100% !important;top:0px;left:0px;z-index:1000}.enlargeIframe.notFull{height: 80% !important;top:20% !important;}.equalCta{position: absolute !important;top: 0px !important;left: 0px !important;width: 100% !important;z-index: 1 !important;border-radius: 0px !important;}.positionRelative{position:relative !important}.zIndex0{z-index:0 !important;}.noTransform{transform: inherit !important;}.div_hidden2{transform: none !important;}.transparentScrollBar{background-color: transparent !important;scrollbar-color: transparent transparent !important;scrollbar-width: none !important;}  .transparentScrollBar::-webkit-scrollbar {height: 0px !important;width: 0px !important;color: transparent !important;}  .transparentScrollBar::-webkit-scrollbar-thumb {display: block !important;height: 0px !important;width: 0px !important;background-color: transparent !important;}`;
       window.document.head.appendChild(style);
     },
     isEnlarge() {
@@ -270,57 +242,231 @@ export default {
         return false;
       }
     },
-    enlargeIframes() {
 
+
+    shrinkIframes11(type) {
+      let iframes = this.getAllAncestorIframes();
+      for (let index in iframes) {
+        if (type === "reset") {
+          iframes[index].classList.remove("enlargeIframe");
+        } else {
+          if (iframes[index].tagName === 'IFRAME') {
+            iframes[index].classList.remove("enlargeIframe");
+          }
+        }
+      }
+
+      if (this.isMobile) {
+
+        //失效了  start
+        //删除遮罩
+        var layerDom =
+            window.top.document.body.querySelector("#layerDomForForm");
+        window.top.document.body.removeChild(layerDom);
+        //失效了  end
+      }
+    },
+    shrinkIframes(type) {
+      let iframes = this.getAllAncestorIframes();
+      let div_hidden = window.top.document.querySelector(".div_hidden");
+      if (div_hidden) {
+        div_hidden.classList.remove("div_hidden2");
+      }
+
+      let topDocumentDom = window.top.document.documentElement
+      topDocumentDom.classList.remove('transparentScrollBar')
+
+      //只有一层iframe
+      if (window.parent === window.top) {
+        if (type !== "reset") {
+          this.toggleClasses(iframes, "add");
+        }
+      } else {
+        var windows = this.getWindows()
+        var carousels =[]
+        windows.forEach((window)=>{
+          var subCarousels = window.document.querySelectorAll(
+              ".el-carousel__item.is-active"
+          )
+          subCarousels.forEach((ele)=>{
+            carousels.push(ele)
+          })
+        })
+        if (!(carousels && carousels.length)) {
+          carousels = window.top.document.querySelectorAll(".van-swipe__track");
+        }
+        if (carousels && carousels.length) {
+          for (var i = 0; i < carousels.length; i++) {
+            carousels[i].classList.remove("noTransform");
+          }
+        }
+
+
+
+        var pNavSearch = []
+        windows.forEach((window)=>{
+          var subPNavSearch = window.document.querySelectorAll(
+              ".p-nav-search"
+          )
+          subPNavSearch.forEach((ele)=>{
+            pNavSearch.push(ele)
+          })
+        })
+        if (pNavSearch && pNavSearch.length) {
+          for (var i = 0; i < pNavSearch.length; i++) {
+            pNavSearch[i].classList.remove("zIndex0");
+          }
+        }
+      }
+
+      for (let index in iframes) {
+        if (type === "reset") {
+          iframes[index].classList.remove("enlargeIframe");
+        } else {
+          if (iframes[index] !== window.frameElement) {
+            iframes[index].classList.remove("enlargeIframe");
+          }
+        }
+      }
+
+      if (this.isMobile()) {
+        //删除遮罩
+        var layerDom =
+            window.top.document.body.querySelector("#layerDomForForm");
+        window.top.document.body.removeChild(layerDom);
+
+        //只有一层， 并且是嵌入式表单
+        if (window.parent === window.top && this.formData.form_type == 2) {
+          window.frameElement.classList.remove("notFull");
+        }
+      }
+    },
+    toggleClasses(iframes, action) {
+      let parentElement
+      if(this.isMobile()){
+        parentElement =
+            window.frameElement.closest(".cta-warp-from") ||
+            window.frameElement.closest(".white-paper");
+      }else{
+        parentElement =
+            window.frameElement.closest(".cta-warp-from") ||
+            window.frameElement.closest(".white-form");
+      }
+
+
+      if (action === "remove") {
+        parentElement.classList.remove("positionRelative");
+        iframes[0].classList.remove("equalCta");
+      } else {
+        parentElement.classList.add("positionRelative");
+        iframes[0].classList.add("equalCta");
+      }
+    },
+    getWindows(){
+      let iframes = this.getAllAncestorIframes();
+      return [
+        window.top,
+        ...iframes.map((iframe)=>{
+          return iframe.contentWindow
+        })
+      ]
+    },
+
+    enlargeIframes() {
       let iframes = this.getAllAncestorIframes();
 
-      if (
-        document.querySelector(".cta-preview")
-      ) {
-        this.ctaTitleAndDesc =
-          document.querySelector(".cta-preview").innerHTML;
+      let div_hidden = window.top.document.querySelector(".div_hidden");
+      if (div_hidden) {
+        div_hidden.classList.add("div_hidden2");
+      }
+
+      let topDocumentDom = window.top.document.documentElement
+      topDocumentDom.classList.add('transparentScrollBar')
+
+      //只有一层iframe
+      if (window.parent === window.top) {
+        this.toggleClasses(iframes, "remove");
+      } else {
+
+        var windows = this.getWindows()
+
+        var carousels =[]
+        windows.forEach((window)=>{
+          var arr = window.document.querySelectorAll(
+              ".el-carousel__item.is-active"
+          )
+          arr.forEach((ele)=>{
+            carousels.push(ele)
+          })
+        })
+        if (!(carousels && carousels.length)) {
+          carousels = window.top.document.querySelectorAll(".van-swipe__track");
+        }
+        if (carousels && carousels.length) {
+          for (var i = 0; i < carousels.length; i++) {
+            carousels[i].classList.add("noTransform");
+          }
+        }
+
+
+        var pNavSearch = []
+        windows.forEach((window)=>{
+          var subPNavSearch = window.document.querySelectorAll(
+              ".p-nav-search"
+          )
+          subPNavSearch.forEach((ele)=>{
+            pNavSearch.push(ele)
+          })
+        })
+        if (pNavSearch && pNavSearch.length) {
+          for (var i = 0; i < pNavSearch.length; i++) {
+            pNavSearch[i].classList.add("zIndex0");
+          }
+        }
+
       }
 
       for (let index in iframes) {
         iframes[index].classList.add("enlargeIframe");
       }
 
-      if (this.isMobile) {
+      if (this.isMobile()) {
         //找到Cta 设置成80% 高度
         for (let index in iframes) {
           if (
-            (this.isMobile &&
-              iframes[index]
-                .getAttribute("src")
-                .match("data-configuration/cta")) ||
-            iframes[index].getAttribute("src").match("web-mobile/cta")
+              (this.isMobile() &&
+                  iframes[index]
+                      .getAttribute("src")
+                      .match("data-configuration/cta")) ||
+              iframes[index].getAttribute("src").match("web-mobile/cta")
           ) {
             iframes[index].classList.add("notFull");
           }
         }
 
+        //只有一层， 并且是嵌入式表单
+        if (window.parent === window.top && this.formData.form_type == 2) {
+          window.frameElement.classList.add("notFull");
+        }
+
         //设置遮罩
         var layerDom = document.createElement("div");
-
-
-        //失效了  start
         window.top.document.body.appendChild(layerDom);
-        //失效了  end
 
         layerDom.setAttribute("id", "layerDomForForm");
         layerDom.style =
-          "width: 100%;height: 100%;background: #000000;opacity: 0.66; position:fixed;top:0px;left:0px;";
+            "width: 100%;height: 100%;background: #000000;opacity: 0.66; position:fixed;top:0px;left:0px;";
       }
     },
     rePopupForm() {
-      this.submitSuccess = false;
-      this.popupFormStatus = false;
-      this.enlargeIframes();
-      // if (this.isEnlarge()) {
-      //   //this.shrinkIframes();
-      // } else {
-      //
-      // }
+      // this.submitSuccess = false;
+      // this.popupFormStatus = false;
+      // this.enlargeIframes();
+      // // if (this.isEnlarge()) {
+      // //   //this.shrinkIframes();
+      // // } else {
+      // //
+      // // }
     },
     popupForm() {
       this.loading = true;
