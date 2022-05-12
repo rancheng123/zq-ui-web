@@ -11,12 +11,11 @@
               ref="upload"
               :multiple="true"
               :on-remove="handleRemove"
-              :file-list="fileList"
               :on-change="bannerChange"
               :auto-upload="false"
           >
             <div class="flex-row-jc">
-              <div class="up-img" v-for="(item, index) in fileList" :key="index">
+              <div class="up-img" v-for="(item, index) in newFileList" :key="index">
                 <div class="img-upload">
                   <img class="banner" :src="domain() + item.key" alt="" />
                   <div class="delete-wrapper" @click.stop="handleRemove(item)">
@@ -26,7 +25,7 @@
               </div>
               <div
                   v-show="
-                fileList.length < $attrs.currentItem.num_range.image_number
+                newFileList.length < $attrs.currentItem.num_range.image_number
               "
                   class="up-img upload-btn"
               >
@@ -61,6 +60,22 @@ export default {
       },
     },
   },
+  computed: {
+    newFileList: {
+      get() {
+        var res = [];
+        if (this.value[this.$attrs.currentItem.field_name]) {
+          res = this.value[this.$attrs.currentItem.field_name];
+        }
+        return res;
+      },
+      set(value) {
+        debugger;
+        this.$set(this.$attrs.currentItem, 'default_value', value);
+        this.$set(this.value, this.$attrs.currentItem.field_name, value);
+      },
+    },
+  },
   components: { zqFormItem },
   inheritAttrs: false,
   data() {
@@ -71,20 +86,7 @@ export default {
       limitType: ["png", "jpg", "jpeg"],
     };
   },
-  //监听属性 类似于data概念
-  //监控data中的数据变化
-  watch: {
-    fileList: {
-      handler() {
-        this.$set(
-          this.value,
-          this.$attrs.currentItem.field_name,
-          this.fileList
-        );
-      },
-      deep: true,
-    },
-  },
+
   //方法集合
   methods: {
     domain(){
@@ -92,11 +94,12 @@ export default {
       return res
     },
     handleRemove(data) {
-      this.fileList = this.fileList.filter((item) => item.key != data.key);
+      var fileList = this.newFileList.filter((item) => item != data);
+      this.$set(this.value, this.$attrs.currentItem.field_name, fileList);
     },
     bannerChange(file, fileList) {
       const image_number = this.$attrs.currentItem.num_range.image_number;
-      if (this.fileList.length >= image_number) {
+      if (this.newFileList.length >= image_number) {
         this.$zqMessage.error(`图片最多只能上传${image_number}张!`);
         return;
       }
@@ -143,8 +146,14 @@ export default {
       );
     },
     onSuccess(data) {
-      this.fileList.push(data);
-      console.log(data, "onSuccess");
+      console.log('newFileList', this.newFileList);
+      // var fileList = this.newFileList;
+      // fileList.push(data);
+      var fileList_new = this.newFileList;
+      fileList_new.push(this.domain() + data.key);
+      this.$set(this.value, this.$attrs.currentItem.field_name, fileList_new);
+
+      console.log(data, 'onSuccess');
     },
     uploadError() {
       this.$zqMessage.error("上传失败");

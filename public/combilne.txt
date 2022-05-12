@@ -12,11 +12,9 @@ D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Ske
 
 
 
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqCheckbox.vue
-
-
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqImage.vue
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqRadio.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqSelect.vue
 
