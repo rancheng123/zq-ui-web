@@ -1,13 +1,6 @@
 //组件回显待验证，  地址  图片
 
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageMix.vue
-
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Skeleton.vue
 
 
 

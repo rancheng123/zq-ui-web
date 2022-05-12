@@ -4,16 +4,16 @@
       <van-skeleton title :row="20" style="height: 100%; overflow: hidden" />
     </div>
     <div v-show="!loading">
-      <formPageCore
-        v-if="type === 'formPage'"
-        @onSubmitSuccess="$emit('onSubmitSuccess', true)"
-        @onMounted="loading = false"
-      ></formPageCore>
+      <formPageMix
+          :isFormPage="isFormPage()"
+          @onSubmitSuccess="$emit('onSubmitSuccess', true)"
+          @onMounted="loading = false"
+      ></formPageMix>
     </div>
   </div>
 </template>
 <script>
-import formPageCore from "./formPageCore.vue";
+import formPageMix from "./formPageMix";
 export default {
   name: "Skeleton",
   data() {
@@ -30,7 +30,12 @@ export default {
     },
   },
   components: {
-    formPageCore,
+    formPageMix,
+  },
+  methods: {
+    isFormPage() {
+      return this.$route.name === "formPage";
+    },
   },
 };
 </script>
