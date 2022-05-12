@@ -18,6 +18,7 @@
             </el-time-picker>
             <van-field
                 v-else
+                class="vanMobileTime"
                 readonly
                 clickable
                 :style="$attrs.formData.advance_attribute.input.style"

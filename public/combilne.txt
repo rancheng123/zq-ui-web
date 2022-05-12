@@ -1,31 +1,27 @@
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageCore.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\popup.less
-
-
-
-
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqAddress.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobileAddress\index.less
-
-
-
-
-
-
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\formPageMix.vue
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\Skeleton.vue
 
-D:\workSpace\cdp-app\src\utils\componentStore.js
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\opitimization\common.less
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqTimePicker.vue
 
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\components\createForm.vue
-D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\components\exteriorFrom.vue
+
+
+
+
+
+
+
+
+
+
 
 
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\zqDateTimePicker.vue
+
+
+
+
 D:\workSpace\cdp-app\src\views\data-configuration\form-management\createForm\previewComponents\mobile\components\flexBox\index.vue
 
 
