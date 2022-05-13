@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import formPageMix from "./formPageMix";
+import formPageMix from "./formPageMix.vue";
 export default {
   name: "Skeleton",
   data() {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     isFormPage() {
-      return this.$route.name === "formPage";
+      return true;
     },
   },
 };

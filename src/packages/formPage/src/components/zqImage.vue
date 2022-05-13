@@ -17,7 +17,9 @@
             <div class="flex-row-jc">
               <div class="up-img" v-for="(item, index) in newFileList" :key="index">
                 <div class="img-upload">
-                  <img class="banner" :src="domain() + item.key" alt="" />
+
+<!--                  <img class="banner" :src="domain() + item.key" alt="" />-->
+                  <img class="banner" :src="item" alt="" />
                   <div class="delete-wrapper" @click.stop="handleRemove(item)">
                     <zq-icon name="icon-shanchuicon-normal"></zq-icon>
                   </div>

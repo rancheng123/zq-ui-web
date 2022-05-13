@@ -17,10 +17,10 @@
 
       <div class="from-warp" v-if="success">
         <div class="from-content" v-if="!is_submit">
-          <div :style="'height: 24px;'" v-if="formData.form_type == 1 && !isMobile()"></div>
+          <div :style="'height: 24px;'" v-if="formData.form_type == 1 && !isMobile"></div>
 
           <div :class="{
-          borderRadius6: formData.form_type == 1 && !isMobile()
+          borderRadius6: formData.form_type == 1 && !isMobile
         }">
             <!-- 头图 -->
             <div class="banner banner15" v-if="formData.form_type == 1">
@@ -47,7 +47,7 @@
                 <div :style="formData.advance_attribute.page.style">
                   <div
                       :class="{
-                pcSinglePadding24: !isMobile() && formData.form_type == 1,
+                pcSinglePadding24: !isMobile && formData.form_type == 1,
               }"
                   >
                     <!-- 标题和简介 -->
@@ -114,7 +114,7 @@
 
           </div>
 
-          <div :style="'height: 24px;'" v-if="formData.form_type == 1 && !isMobile()"></div>
+          <div :style="'height: 24px;'" v-if="formData.form_type == 1 && !isMobile"></div>
         </div>
       </div>
       <!-- 隐私条框弹窗 -->
@@ -299,11 +299,10 @@ export default {
 
     updateTitle() {
       if (
-        window.parent &&
-        window.parent.document.querySelector(".cta-preview")
+        document.querySelector(".cta-preview")
       ) {
         this.ctaTitleAndDesc =
-          window.parent.document.querySelector(".cta-preview").innerHTML;
+          document.querySelector(".cta-preview").innerHTML;
       }
     },
     checked(key, value) {
@@ -329,10 +328,13 @@ export default {
           // data = mockData.data;
           //测试 end
 
+
           if(self.submitData.Address){
             self.submitData.Address.province = data.province
             self.submitData.Address.city = data.city
             self.submitData.Address.area = data.area
+          }else{
+
           }
 
 
@@ -616,7 +618,7 @@ export default {
                 //获取customer_id，用于c端埋点 -qrj
                 this.parentEmitMsg({ customer_id: data.customer_id })
 
-                // window.parent.postMessage({ customer_id: data }, '*');
+
                 localStorage.setItem("customer_id", data.customer_id);
                 // 先下载 cms 需求
                 if (this.downloadUrl && this.downloadUrl != "undefiend") {
