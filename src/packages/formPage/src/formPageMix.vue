@@ -10,7 +10,7 @@
       </div>
       <!-- 拿到数据后显示 -->
       <div
-          v-if="isFormPage"
+          v-if="!isPreview"
           class="copy"
           :data-clipboard-text="downloadUrl"
       ></div>
@@ -198,13 +198,10 @@ export default {
 
     };
   },
-  props: {
-    isFormPage: Boolean,
-    default() {
-      return true;
-    },
-  },
   computed: {
+    isPreview(){
+      return this.closest2('ZqFormPage').isPreview
+    },
     formBg() {
       if (
         this.formData &&
@@ -247,7 +244,7 @@ export default {
     this.uo = window.localStorage.getItem("uo") || "";
     this.is_mobi = this.isMobile;
 
-    if (this.isFormPage) {
+    if (!this.isPreview) {
       if (this.is_mobi) {
         let head = document.getElementsByTagName("head");
         let meta = document.createElement("meta");
@@ -363,7 +360,7 @@ export default {
 
       let params;
       let api;
-      if (this.isFormPage) {
+      if (!this.isPreview) {
         params = {
           form_id: this.form_id,
           org_id: this.org_id,
@@ -392,7 +389,7 @@ export default {
 
       api.then(({ code, data, msg }) => {
         if (code == 0) {
-          if (this.isFormPage) {
+          if (!this.isPreview) {
             self.formData = JSON.parse(data.form_content);
           } else {
             self.formData = data;
@@ -414,7 +411,7 @@ export default {
             document.title = this.formData.basic_attribute.pageTitle;
           }
 
-          if (this.isFormPage) {
+          if (!this.isPreview) {
             if (this.uo && this.uo != 0) {
               this.key = "customer_id";
               if (this.formData.is_auto_completion == 2) {
@@ -559,7 +556,7 @@ export default {
             return false;
           }
 
-          if (this.isFormPage) {
+          if (!this.isPreview) {
             let submitPanelData = {};
             this.formData.field_content.forEach((item) => {
               if (item.tag == "panel" && item.isEdit) {

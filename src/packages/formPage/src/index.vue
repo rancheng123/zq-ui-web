@@ -21,6 +21,12 @@ export default {
     popup,
   },
   props: {
+    isPreview: {
+      type: Boolean,
+      default(){
+        return false
+      }
+    },
     apiPrefix: {
       type: String,
       default(){
