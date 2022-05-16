@@ -39,10 +39,6 @@
 
               <div slot="body">
                 <div class="box">
-                  <div class="form-title">
-                    <div v-html="ctaTitleAndDesc"></div>
-                  </div>
-
                   <Skeleton
                       :type="type"
                       :loading="loading"
@@ -66,9 +62,6 @@
               ></zq-icon>
               <div class="fullscreenInnerWrap">
                 <div class="centerBox">
-                  <div class="form-title">
-                    <div v-html="ctaTitleAndDesc"></div>
-                  </div>
                   <Skeleton
                       :type="type"
                       :loading="loading"
@@ -131,7 +124,6 @@ export default {
       formData: {
         form_type: 1,
       },
-      ctaTitleAndDesc: "",
     };
   },
   components: {
@@ -271,15 +263,9 @@ export default {
       }
     },
     enlargeIframes() {
-    
+
       let iframes = this.getAllAncestorIframes();
 
-      if (
-          document.querySelector(".cta-preview")
-      ) {
-        this.ctaTitleAndDesc =
-            document.querySelector(".cta-preview").innerHTML;
-      }
 
       for (let index in iframes) {
         iframes[index].classList.add("enlargeIframe");
