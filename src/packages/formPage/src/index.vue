@@ -39,16 +39,10 @@ export default {
         return ''
       }
     },
-    domain: {
+    imageServerDomain: {
       type: String,
       default(){
         return ''
-      }
-    },
-    topLocation: {
-      type: Object,
-      default(){
-        return {}
       }
     },
     params: {

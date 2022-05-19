@@ -18,7 +18,7 @@
               <div class="up-img" v-for="(item, index) in newFileList" :key="index">
                 <div class="img-upload">
 
-<!--                  <img class="banner" :src="domain() + item.key" alt="" />-->
+<!--                  <img class="banner" :src="imageServerDomain() + item.key" alt="" />-->
                   <img class="banner" :src="item" alt="" />
                   <div class="delete-wrapper" @click.stop="handleRemove(item)">
                     <zq-icon name="icon-shanchuicon-normal"></zq-icon>
@@ -91,8 +91,8 @@ export default {
 
   //方法集合
   methods: {
-    domain(){
-      var res = this.closest2('ZqFormPage').domain
+    imageServerDomain(){
+      var res = this.closest2('ZqFormPage').imageServerDomain
       return res
     },
     handleRemove(data) {
@@ -152,7 +152,7 @@ export default {
       // var fileList = this.newFileList;
       // fileList.push(data);
       var fileList_new = this.newFileList;
-      fileList_new.push(this.domain() + data.key);
+      fileList_new.push(this.imageServerDomain() + data.key);
       this.$set(this.value, this.$attrs.currentItem.field_name, fileList_new);
 
       console.log(data, 'onSuccess');

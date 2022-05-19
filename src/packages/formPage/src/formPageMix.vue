@@ -25,7 +25,7 @@
             <!-- 头图 -->
             <div class="banner banner15" v-if="formData.form_type == 1">
               <el-image
-                  :src="domain() + formData.basic_attribute.banner"
+                  :src="imageServerDomain() + formData.basic_attribute.banner"
                   fit="fill"
                   :style="{
               height: isMobile
@@ -268,8 +268,8 @@ export default {
     }
   },
   methods: {
-    domain(){
-      var res = this.closest2('ZqFormPage').domain
+    imageServerDomain(){
+      var res = this.closest2('ZqFormPage').imageServerDomain
       return res
     },
     emitMsg(msgObj){
@@ -436,7 +436,7 @@ export default {
             if (self.formData.form_type === 1) {
               params = {
                 ...params,
-                ...getUtmJson(this.closest2('ZqFormPage').topLocation, "link"),
+                ...getUtmJson(location, "link"),
               };
 
               console.log(params, "--aaaa");
@@ -602,7 +602,7 @@ export default {
 
             //下载统计
             if (this.downloadUrl && this.downloadUrl != "undefiend") {
-              params.source.utm = getUtmJson(this.closest2('ZqFormPage').topLocation, "download");
+              params.source.utm = getUtmJson(location, "download");
             }
 
             request({
