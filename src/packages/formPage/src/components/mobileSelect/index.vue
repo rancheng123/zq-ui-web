@@ -78,12 +78,6 @@ export default {
     flexBox,
   },
   props: {
-    label: {
-      type: String,
-      default() {
-        return "";
-      },
-    },
     value: {
       type: String,
       default() {

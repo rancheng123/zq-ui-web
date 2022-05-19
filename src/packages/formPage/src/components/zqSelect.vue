@@ -17,8 +17,7 @@
 
           <moibleSelect
               v-else
-              :label="selectedLabel"
-              :value="selectedLabel"
+              :value="moibleSelectValue"
               :style1="$attrs.formData.advance_attribute.input.style"
               :placeholder="$attrs.currentItem.placeholder"
               :data="options"
@@ -66,6 +65,17 @@ export default {
   computed: {
     options() {
       return this.$attrs.currentItem.options.filter((item) => item.isShow);
+    },
+    moibleSelectValue: {
+      get() {
+        let val = "";
+        this.$attrs.currentItem.options.forEach((item, index) => {
+          if (item.value === this.value[this.$attrs.currentItem.field_name]) {
+            val = item.value;
+          }
+        });
+        return val;
+      },
     },
     selectedLabel: {
       get() {

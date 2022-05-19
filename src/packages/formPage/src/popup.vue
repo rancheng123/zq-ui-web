@@ -13,10 +13,10 @@
           <div class="transparentOverLay" @click="popupForm"></div>
 
           <Skeleton
+              :key="skeletonKey"
               :type="type"
               :loading="loading"
               @onSubmitSuccess="onSubmitSuccess"
-              @onMounted="onMounted"
           ></Skeleton>
         </div>
 
@@ -25,29 +25,36 @@
           <!--  移动端  start    -->
           <!--   v-if="showQingchuMobile && "    -->
           <div v-if="isMobile" class="mobileEmbed">
-            <flexBox>
-              <div slot="head">
-                <div>
-                  <div class="mobilePopTitle">表单填写</div>
-                  <zq-icon
-                      name="icon-shanchuyixuanchengyuan"
-                      class="icon-qingchuMobile"
-                      @click="dePopupForm"
-                  ></zq-icon>
-                </div>
-              </div>
+            <div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px;z-index: 100000000000;">
+              <div style="height: 80%;width: 100%;top: 20%;position: absolute;z-index: 2;">
+                <flexBox>
+                  <div slot="head">
+                    <div>
+                      <div class="mobilePopTitle">表单填写</div>
+                      <zq-icon
+                          name="icon-shanchuyixuanchengyuan"
+                          class="icon-qingchuMobile"
+                          @click="dePopupForm"
+                      ></zq-icon>
+                    </div>
+                  </div>
 
-              <div slot="body">
-                <div class="box">
-                  <Skeleton
-                      :type="type"
-                      :loading="loading"
-                      @onSubmitSuccess="onSubmitSuccess"
-                      @onMounted="onMounted"
-                  ></Skeleton>
-                </div>
+                  <div slot="body">
+                    <div class="box"  :style="'background:' + formData.advance_attribute.page.style.backgroundColor">
+                      <Skeleton
+                          :key="skeletonKey"
+                          :type="type"
+                          :loading="loading"
+                          @onSubmitSuccess="onSubmitSuccess"
+                      ></Skeleton>
+                    </div>
+                  </div>
+                </flexBox>
               </div>
-            </flexBox>
+              <div style="width: 100%; height: 100%; background: rgb(0, 0, 0); opacity: 0.66; position: absolute; top: 0px; left: 0px;z-index: 1;"></div>
+            </div>
+
+
           </div>
           <!--  移动端  end    -->
 
@@ -57,16 +64,17 @@
               <zq-icon
                   v-if="isEnlarge()"
                   name="icon-qingchu"
-                  class="icon-qingchu"
+                  class="icon-qingchu icon-qingchu-pcPopup"
                   @click="dePopupForm"
               ></zq-icon>
-              <div class="fullscreenInnerWrap">
+
+              <div class="fullscreenInnerWrap transparentScrollBar">
                 <div class="centerBox">
                   <Skeleton
+                      :key="skeletonKey"
                       :type="type"
                       :loading="loading"
                       @onSubmitSuccess="onSubmitSuccess"
-                      @onMounted="onMounted"
                   ></Skeleton>
                 </div>
               </div>
@@ -80,18 +88,18 @@
       <div v-else>
         <div v-if="isMobile" class="mobileSingle">
           <Skeleton
+              :key="skeletonKey"
               :type="type"
               :loading="loading"
               @onSubmitSuccess="onSubmitSuccess"
-              @onMounted="onMounted"
           ></Skeleton>
         </div>
         <div v-else class="pcSingle">
           <Skeleton
+              :key="skeletonKey"
               :type="type"
               :loading="loading"
               @onSubmitSuccess="onSubmitSuccess"
-              @onMounted="onMounted"
           ></Skeleton>
         </div>
       </div>
@@ -104,6 +112,9 @@
         >重新提交</zq-button
         >
       </div>
+
+
+
     </div>
   </div>
 </template>
@@ -116,6 +127,7 @@ export default {
   name: "popup",
   data() {
     return {
+      skeletonKey: Date.now(),
       isMobile:false,
       loading: true,
       popupFormStatus: false,
@@ -171,9 +183,6 @@ export default {
     },
   },
   methods: {
-    onMounted() {
-
-    },
     onSubmitSuccess(val) {
       this.submitSuccess = val;
       if (this.formData.form_type == 2) {
@@ -181,145 +190,23 @@ export default {
       }
     },
     reSubmit() {
-      this.rePopupForm();
-
-      setTimeout(() => {
-        // this.sendMessage2({
-        //   type: "reload",
-        // });
-        window.frameElement && window.frameElement.classList.add("reload");
-        location.reload();
-      }, 1000);
+      this.submitSuccess = false;
+      this.enlargeIframes();
+      this.skeletonKey = Date.now();
     },
-    shrinkIframes(type) {
-      let iframes = this.getAllAncestorIframes();
-      for (let index in iframes) {
-        if (type === "reset") {
-          iframes[index].classList.remove("enlargeIframe");
-        } else {
-          if (iframes[index].tagName === 'IFRAME') {
-            iframes[index].classList.remove("enlargeIframe");
-          }
-        }
-      }
-
-      // if (this.isMobile) {
-      //
-      //   //失效了  start
-      //   //删除遮罩
-      //   var layerDom =
-      //       window.top.document.body.querySelector("#layerDomForForm");
-      //   window.top.document.body.removeChild(layerDom);
-      //   //失效了  end
-      // }
-    },
-    getAllAncestorIframes() {
-      let res = [];
-
-
-      res.push(
-          document.querySelector('.formPageBox')
-      )
-      this.createStyle(window);
-
-      let currentWin = window;
-      let goOnWhile = true;
-      while (goOnWhile) {
-        //失效了 start
-        if (currentWin.frameElement) {
-          res.push(currentWin.frameElement);
-          this.createStyle(currentWin.parent);
-        }
-        //失效了 end
-
-        if (currentWin.parent) {
-          currentWin = currentWin.parent;
-          if (currentWin === currentWin.top) {
-            goOnWhile = false;
-          }
-        } else {
-          goOnWhile = false;
-        }
-      }
-      return res;
-    },
-    createStyle(window) {
-      var style = document.createElement("style");
-      style.setAttribute("type", "text/css");
-      style.setAttribute("class", "enlargeStyle");
-      //不能换行，否则失效
-      style.innerText = `.enlargeIframe{position: fixed;width: 100%;height: 100%;top:0px;left:0px;z-index:1000}.enlargeIframe.notFull{height: 80%;top:20%;}`;
-      window.document.head.appendChild(style);
+    shrinkIframes() {
+      this.closest2('ZqFormPage').isEnlarge = false
     },
     isEnlarge() {
-      //测试 start
-      //return true;
-      //测试 end
-
-      if (window.frameElement) {
-        return window.frameElement.classList.contains("enlargeIframe");
-      } else {
-        return false;
-      }
+      return this.closest2('ZqFormPage').isEnlarge;
     },
     enlargeIframes() {
-
-      let iframes = this.getAllAncestorIframes();
-
-
-      for (let index in iframes) {
-        iframes[index].classList.add("enlargeIframe");
-      }
-
-      // if (this.isMobile) {
-      //   //找到Cta 设置成80% 高度
-      //   for (let index in iframes) {
-      //     if (
-      //         (this.isMobile &&
-      //             iframes[index]
-      //                 .getAttribute("src")
-      //                 .match("data-configuration/cta")) ||
-      //         iframes[index].getAttribute("src").match("web-mobile/cta")
-      //     ) {
-      //       iframes[index].classList.add("notFull");
-      //     }
-      //   }
-      //
-      //   //设置遮罩
-      //   var layerDom = document.createElement("div");
-      //
-      //
-      //   //失效了  start
-      //   window.top.document.body.appendChild(layerDom);
-      //   //失效了  end
-      //
-      //   layerDom.setAttribute("id", "layerDomForForm");
-      //   layerDom.style =
-      //       "width: 100%;height: 100%;background: #000000;opacity: 0.66; position:fixed;top:0px;left:0px;";
-      //
-      //
-      //
-      // }
-    },
-    rePopupForm() {
-      this.submitSuccess = false;
-      this.popupFormStatus = false;
-      this.enlargeIframes();
-      // if (this.isEnlarge()) {
-      //   //this.shrinkIframes();
-      // } else {
-      //
-      // }
+      this.closest2('ZqFormPage').isEnlarge = true
     },
     popupForm() {
       this.loading = true;
       this.popupFormStatus = true;
       this.enlargeIframes();
-      // if (this.isEnlarge()) {
-      //   //this.shrinkIframes();
-      // } else {
-      //
-      // }
     },
     dePopupForm() {
       this.loading = true;

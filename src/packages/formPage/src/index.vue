@@ -1,5 +1,8 @@
 <template>
-  <div class="formPageBox">
+  <div :class="{
+    formPageBox: true,
+    enlargeIframe: isEnlarge,
+  }">
     <popup
         v-if="formData"
         :type="'formPage'"
@@ -9,12 +12,13 @@
 </template>
 <script>
 import popup from "./popup.vue";
-import request from "./utils/request";
+import request from "./utils/request.js";
 export default {
   name: "ZqFormPage",
   data(){
     return {
-      formData: null
+      formData: null,
+      isEnlarge: false,
     }
   },
   components: {
@@ -31,12 +35,6 @@ export default {
       type: String,
       default(){
         return '/api'
-      }
-    },
-    VUE_APP_UI: {
-      type: String,
-      default(){
-        return ''
       }
     },
     imageServerDomain: {
