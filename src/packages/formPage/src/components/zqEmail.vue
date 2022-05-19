@@ -49,6 +49,7 @@
 import zqFormItem from "./zqFormItem.vue";
 import { mixin } from "../utils/mixin.js";
 import { btnTheme } from "./commonTheme";
+import request from "../utils/request";
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "zqEmail",
@@ -125,7 +126,11 @@ export default {
       const params = {
         value: this.value[this.$attrs.currentItem.field_name],
       };
-      this.$Api.form.getEmailCode(params).then(({ code, msg }) => {
+      request({
+        url: this.closest2('ZqFormPage').apiPrefix + "/cdp/form-app/get-email-code",
+        method: "post",
+        data: params,
+      }).then(({ code, msg }) => {
         if (code == 0) {
           let timesRun = 90;
           this.btnDisabled = true;

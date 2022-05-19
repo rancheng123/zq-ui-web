@@ -1,6 +1,6 @@
 {
   "name": "zq-component",
-  "version": "0.0.2",
+  "version":"0.0.9",
   "description": "a lib for Zq",
   "private": false,
   "main": "lib/index.js",
@@ -10,8 +10,7 @@
     "build": "npm run buildCore && npm run copy:style",
     "buildCore": "rollup --config ./rollup.config.js",
     "copy:style": "gulp build --gulpfile gulpfile.js",
-    "addEslintDisable": "node ./addEslintDisable.js",
-    "publish": "node ./replaceVersion.js && npm publish --registry http://10.0.0.44:4873/"
+    "addEslintDisable": "node ./addEslintDisable.js"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
