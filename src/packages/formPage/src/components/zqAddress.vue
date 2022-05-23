@@ -20,7 +20,7 @@
           <div class="flex-row-jc">
             <mobileAdress
                 ref="mobileAdress"
-                :flexRange="$attrs.formData.form_type == 2 ? 0 : 188"
+                :flexRange="188"
                 :placeholder="$attrs.currentItem.provincePlaceholder || '请选择'"
                 :style="$attrs.formData.advance_attribute.input.style"
                 :value="vant_addressDefaultValue"

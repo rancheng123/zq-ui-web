@@ -1,6 +1,6 @@
 {
   "name": "zq-component",
-  "version":"0.0.9",
+  "version": "0.0.16",
   "description": "a lib for Zq",
   "private": false,
   "main": "lib/index.js",

@@ -8,7 +8,7 @@
       <!--  嵌入式表单    -->
       <div v-if="formData.form_type == 2">
         <!-- 未弹出   -->
-        <div v-if="!popupFormStatus">
+        <div v-if="!isEnlarge()">
           <!--  透明层 点击弹出    -->
           <div class="transparentOverLay" @click="popupForm"></div>
 
@@ -130,7 +130,6 @@ export default {
       skeletonKey: Date.now(),
       isMobile:false,
       loading: true,
-      popupFormStatus: false,
 
       submitSuccess: false,
       formData: {
@@ -205,12 +204,10 @@ export default {
     },
     popupForm() {
       this.loading = true;
-      this.popupFormStatus = true;
       this.enlargeIframes();
     },
     dePopupForm() {
       this.loading = true;
-      this.popupFormStatus = false;
       this.shrinkIframes("reset");
     },
     sendMessage2(msgObj) {

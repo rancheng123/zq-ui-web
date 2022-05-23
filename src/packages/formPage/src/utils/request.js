@@ -16,10 +16,6 @@ const service = axios.create({
 service.interceptors.request.use(
     (config) => {
         console.log("config", config);
-        const token = getToken();
-        if (token) {
-            config.headers["zq-jwt-user"] = token;
-        }
         return config;
     },
     (error) => {
