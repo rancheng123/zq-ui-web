@@ -14,25 +14,6 @@
 import popup from "./popup.vue";
 import request from "./utils/request.js";
 import './utils/index.js'
-import Vue from 'vue'
-Vue.prototype.closest2 = function(target) {
-  let current = this
-  while (current) {
-    if (current && current.$vnode && current.$vnode.tag) {
-      const tagName = current.$vnode.tag.replace(/vue-component-\d+-/, '')
-
-      if (target === tagName) {
-        return current
-      } else {
-        current = current.$parent
-      }
-    } else {
-      current = current.$parent
-    }
-  }
-
-  return null
-}
 export default {
   name: "ZqFormPage",
   data(){
