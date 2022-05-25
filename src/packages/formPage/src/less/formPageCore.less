@@ -82,6 +82,9 @@
     // width: 100%;
     min-width: 88px;
     min-height: 40px;
+    *{
+      color: inherit;
+    }
   }
   .input-with-select {
     width: 100% !important;
@@ -154,7 +157,10 @@
         padding: 0 24px;
         font-size: 14px;
         &.van-picker-column__item--selected {
-          color: #ff724f;
+          div{
+            color: #ff724f;
+          }
+
         }
       }
       .van-picker__toolbar {

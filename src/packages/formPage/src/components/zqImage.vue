@@ -14,7 +14,7 @@
               :on-change="bannerChange"
               :auto-upload="false"
           >
-            <div class="flex-row-jc">
+            <div class="flex-row-jc" style="margin-left: -12px">
               <div class="up-img" v-for="(item, index) in newFileList" :key="index">
                 <div class="img-upload">
 
