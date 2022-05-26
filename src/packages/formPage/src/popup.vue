@@ -26,7 +26,7 @@
           <!--   v-if="showQingchuMobile && "    -->
           <div v-if="isMobile" class="mobileEmbed">
             <div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px;z-index: 100000000000;">
-              <div style="height: 80%;width: 100%;top: 20%;position: absolute;z-index: 2;">
+              <div style="height: 80%;width: 100%;top: 20%;position: absolute;z-index: 2;background: white">
                 <flexBox>
                   <div slot="head">
                     <div>
@@ -202,6 +202,14 @@ export default {
 
     },
     effect(type){
+
+      document.querySelectorAll('.formPageBox').forEach((ele)=>{
+        if(ele !== this.closest2('ZqFormPage').$el){
+          ele.classList[type]("hidden");
+        }
+      })
+      document.querySelectorAll('.formPageBox')[0] === document.querySelectorAll('.formPageBox')[0]
+
       var carousels =[]
       var subCarousels = document.querySelectorAll(
           ".el-carousel__item.is-active"
