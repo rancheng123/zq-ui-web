@@ -2,6 +2,8 @@
   <div :class="{
     formPageBox: true,
     enlargeIframe: isEnlarge,
+    isEmbed: formData && formData.form_type !== 1,
+    isMobile: isMobile
   }">
     <popup
         v-if="formData"
@@ -13,11 +15,12 @@
 <script>
 import popup from "./popup.vue";
 import request from "./utils/request.js";
-import './utils/index.js'
+import  {isMobile} from'./utils/index.js'
 export default {
   name: "ZqFormPage",
   data(){
     return {
+      isMobile: false,
       formData: null,
       isEnlarge: false,
     }
@@ -39,6 +42,12 @@ export default {
     }
   },
   props: {
+    ctaTitleAndDesc: {
+      type: String,
+      default(){
+        return ''
+      }
+    },
     isPreview: {
       type: Boolean,
       default(){
@@ -94,6 +103,7 @@ export default {
     },
   },
   mounted(){
+    this.isMobile = isMobile()
     this.getDetail()
   }
 };

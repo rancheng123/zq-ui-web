@@ -28,7 +28,7 @@
           </button>
         </div>
         <div slot="body">
-          <ul style="height: 196px; padding-bottom: 68px">
+          <ul style="height: 196px; padding-bottom: 68px;margin-left: 0px !important;list-style: none !important;">
             <!-- van-picker-column__item--selected               -->
             <li
               v-for="(item, index) in data"

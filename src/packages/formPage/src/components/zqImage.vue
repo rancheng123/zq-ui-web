@@ -148,14 +148,14 @@ export default {
       );
     },
     onSuccess(data) {
-      console.log('newFileList', this.newFileList);
+
       // var fileList = this.newFileList;
       // fileList.push(data);
       var fileList_new = this.newFileList;
       fileList_new.push(this.imageServerDomain() + data.key);
       this.$set(this.value, this.$attrs.currentItem.field_name, fileList_new);
 
-      console.log(data, 'onSuccess');
+
     },
     uploadError() {
       this.$zqMessage.error("上传失败");

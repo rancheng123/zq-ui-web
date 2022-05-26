@@ -5,7 +5,7 @@
         v-loading="loading"
         :style="[{ backgroundColor: `${formBg ? formBg : cta_background}` }]"
     >
-      <div class="form-title" v-if="showCtaTitleAndDesc">
+      <div class="form-title" v-if="isEnlarge">
         <div v-html="ctaTitleAndDesc"></div>
       </div>
       <!-- 拿到数据后显示 -->
@@ -170,7 +170,6 @@ export default {
   data() {
     return {
       isMobile: false,
-      ctaTitleAndDesc: "",
       showPop: true,
       testvisible: false,
       submitData: {},
@@ -199,6 +198,12 @@ export default {
     };
   },
   computed: {
+    ctaTitleAndDesc(){
+      return this.closest2('ZqFormPage').ctaTitleAndDesc;
+    },
+    isEnlarge() {
+      return this.closest2('ZqFormPage').isEnlarge;
+    },
     isPreview(){
       return this.closest2('ZqFormPage').isPreview
     },
@@ -280,27 +285,10 @@ export default {
       window.parent.location.href =
           this.formData.http_jump_link;
     },
-    parentEmitMsg(msgObj){
-      //此 parent不要动
-      window.parent.postMessage(
-          msgObj,
-          "*"
-      );
-
-    },
     sendMessage() {
       this.emitMsg({
         type: "cdp"
       })
-    },
-
-    updateTitle() {
-      if (
-        document.querySelector(".cta-preview")
-      ) {
-        this.ctaTitleAndDesc =
-          document.querySelector(".cta-preview").innerHTML;
-      }
     },
     checked(key, value) {
       if (this.formData.is_auto_completion == 2) {
@@ -354,9 +342,7 @@ export default {
 
     async getDetail() {
       let self = this;
-      this.updateTitle();
 
-      this.showCtaTitleAndDesc = this.closest2("popup").popupFormStatus;
 
       let params;
       let api;
@@ -439,7 +425,7 @@ export default {
                 ...getUtmJson(location, "link"),
               };
 
-              console.log(params, "--aaaa");
+
             }
 
             // 父级为未发布态 不需要统计
@@ -612,9 +598,6 @@ export default {
             }).then(({ code, data, msg }) => {
               if (code == 0) {
                 this.$emit("onSubmitSuccess", true);
-                //获取customer_id，用于c端埋点 -qrj
-                this.parentEmitMsg({ customer_id: data.customer_id })
-
 
                 localStorage.setItem("customer_id", data.customer_id);
                 // 先下载 cms 需求
@@ -656,7 +639,7 @@ export default {
             }
           }
         } else {
-          console.log("error submit!!");
+
           return false;
         }
       });

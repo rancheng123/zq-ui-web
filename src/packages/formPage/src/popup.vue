@@ -106,7 +106,7 @@
 
       <!--  嵌入式表单用此结果页     -->
       <div class="submit-over2" v-if="submitSuccess && formData.form_type == 2">
-        <img src="../assets/submitSuccess.png" />
+        <img src="https://app-test.beschannels.com/web-cdp/static/img/submitSuccess.20a7664f.png" />
         <div class="decs" v-html="formData.personal_display_content"></div>
         <zq-button class="submitBtn mt32" plain @click="reSubmit"
         >重新提交</zq-button
@@ -194,13 +194,66 @@ export default {
       this.skeletonKey = Date.now();
     },
     shrinkIframes() {
+      this.effect('remove')
       this.closest2('ZqFormPage').isEnlarge = false
+
+
+
+
+    },
+    effect(type){
+      var carousels =[]
+      var subCarousels = document.querySelectorAll(
+          ".el-carousel__item.is-active"
+      )
+      subCarousels.forEach((ele)=>{
+        carousels.push(ele)
+      })
+      if (!(carousels && carousels.length)) {
+        carousels = document.querySelectorAll(".van-swipe__track");
+      }
+      if (carousels && carousels.length) {
+        for (var i = 0; i < carousels.length; i++) {
+          carousels[i].classList[type]("noTransform");
+        }
+      }
+
+
+      var pNavSearch = []
+      document.querySelectorAll(
+          ".p-nav-search"
+      ).forEach((ele)=>{
+        pNavSearch.push(ele)
+      })
+
+      document.querySelectorAll(
+          ".el-carousel__arrow"
+      ).forEach((ele)=>{
+        pNavSearch.push(ele)
+      })
+
+
+      if (pNavSearch && pNavSearch.length) {
+        for (var i = 0; i < pNavSearch.length; i++) {
+          pNavSearch[i].classList[type]("zIndex0");
+        }
+      }
     },
     isEnlarge() {
       return this.closest2('ZqFormPage').isEnlarge;
     },
     enlargeIframes() {
-      this.closest2('ZqFormPage').isEnlarge = true
+      this.effect('add')
+      if(this.enlargeIframestimer){
+        clearTimeout(this.enlargeIframestimer)
+      }
+      this.enlargeIframestimer = setTimeout(()=>{
+        clearTimeout(this.enlargeIframestimer)
+        this.closest2('ZqFormPage').isEnlarge = true
+      },600)
+
+
+
     },
     popupForm() {
       this.loading = true;

@@ -59,7 +59,7 @@ export default {
     },
   },
   mounted() {
-    console.log("input2", this.$attrs.currentItem);
+
   },
   //方法集合
   methods: {

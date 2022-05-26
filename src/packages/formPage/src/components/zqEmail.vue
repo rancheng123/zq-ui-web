@@ -183,7 +183,11 @@ export default {
         value: this.value[this.$attrs.currentItem.field_name],
         code: this.value[this.$attrs.currentItem.field_name + "code"],
       };
-      this.$Api.form.checkEmailCode(params).then(({ code, msg }) => {
+      request({
+        url: this.closest2('ZqFormPage').apiPrefix + "/cdp/form-app/check-email-code",
+        method: "post",
+        data: params,
+      }).then(({ code, msg }) => {
         if (code == 0) {
           this.$emit("checked", this.$attrs.currentItem.field_name);
           this.$set(

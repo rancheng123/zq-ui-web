@@ -47,7 +47,7 @@ export default {
   //监控data中的数据变化
   watch: {
     "$attrs.value"() {
-      console.log("======", this.$attrs.value);
+
     },
   },
   //方法集合

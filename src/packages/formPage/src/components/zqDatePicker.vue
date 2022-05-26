@@ -99,7 +99,7 @@ export default {
       });
     },
     onConfirm(data) {
-      console.log(data);
+
       this.dateValue = new Date(data).getTime();
       this.dateChange();
 

@@ -199,7 +199,7 @@ export const mixin = {
             item.fileRules.forEach((rule) => {
               let val = this.initRuleValue(item);
               if (item.activeValue != "") {
-                console.log(rule);
+
                 this.ruleType(rule, val, "", item.field_name, true);
               } else {
                 this.ruleType(rule, val, "", item.field_name, false);
@@ -349,7 +349,7 @@ export const mixin = {
      * @returns
      */
     isRulePanel(panelRule, field_name) {
-      console.log(panelRule, field_name);
+
       // 获取规则面板
       let panelIndex = this.$attrs.formData.field_content.findIndex((item) => {
         return item.field_name == panelRule.field_name;
@@ -554,7 +554,7 @@ export const mixin = {
      * @returns
      */
     isEqual(panelRules, val, ruleValue, isEnd, field_name, flag) {
-      console.log(ruleValue, val);
+
       if (panelRules.length == 0) {
         return;
       }
@@ -579,7 +579,7 @@ export const mixin = {
      * @returns
      */
     isNoEqual(panelRules, val, ruleValue, isEnd, field_name, flag) {
-      console.log(panelRules, val, ruleValue, isEnd, field_name, flag);
+
       if (panelRules.length == 0) {
         return;
       }
