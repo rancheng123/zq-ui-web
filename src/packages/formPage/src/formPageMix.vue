@@ -149,9 +149,11 @@
 
       <!--  单页面表单用此结果页     -->
       <div class="submit-over" v-if="is_submit && formData.form_type == 1">
-        <img src="../../../../assets/nodata.png" />
+        <img src="http://localhost:8092/lib/zq-public/utils/nodata.png" />
         <span class="decs" v-html="formData.personal_display_content"> </span>
       </div>
+
+
 
       <!-- 隐私条框弹窗 -->
     </div>

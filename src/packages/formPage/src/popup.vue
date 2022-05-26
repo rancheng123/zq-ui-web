@@ -106,7 +106,7 @@
 
       <!--  嵌入式表单用此结果页     -->
       <div class="submit-over2" v-if="submitSuccess && formData.form_type == 2">
-        <img src="https://app-test.beschannels.com/web-cdp/static/img/submitSuccess.20a7664f.png" />
+        <img src="http://localhost:8092/lib/zq-public/utils/submitSuccess.png" />
         <div class="decs" v-html="formData.personal_display_content"></div>
         <zq-button class="submitBtn mt32" plain @click="reSubmit"
         >重新提交</zq-button
