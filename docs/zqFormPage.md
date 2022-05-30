@@ -1,5 +1,12 @@
-<template>
-  <div class="home">
+## ZqFormPage 按钮
+
+### 基础用法
+
+基础用法。
+:::demo 
+
+```html
+  <template>
     <ZqFormPage
         :ctaTitleAndDesc="'<div>PetroPolis测试</div>'"
         :imageServerDomain='"http:www.baidu.com"'
@@ -27,31 +34,20 @@
           }
         }"
     ></ZqFormPage>
-  </div>
 </template>
 
 <script>
-
-
-// 单独引入
-//import '../../lib/button/index.css';
-//import EaInput from '../../lib/button/index.js';
-
-// 联合引入
-import '../../lib/index.css';
-import { ZqFormPage } from '../../lib/index.js';
-
-
 export default {
-  name: "Home",
-  data(){
-    return {
-      value: '22222',
-      value2: '44444'
-    }
-  },
-  components: {
-    ZqFormPage
-  },
+  name: 'Home',
 };
 </script>
+<style>
+.mt10 {
+  margin-top: 10px;
+}
+</style>
+
+  
+```
+
+
